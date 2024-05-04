@@ -14,6 +14,18 @@ Our ambition to create this budget buddy web app stems from our past experience�
 ## Technical Description
 ### Architectural Diagram
 
+### User Personas
+| User | User Persona Story |
+| ---- | ------------------ |
+| College Student | I would like to use the budget buddy app to help me manage my spending so I don’t have to worry about that and school |
+| Young Adult (just moved out of parents house) | I’d like to use the budget buddy to help manage my expenses and discuss with other users like me and more experienced ones to see what I can do better. | 
+| Young Adult (living with parents) | I’d like to use the budget buddy app to save money better and be able to know how much money I should be spending on different aspects of my life |
+| Inexperienced Budgeter | I want to use the budget buddy app to learn more about budgeting by creating my own and sticking with it over time |
+| Experienced Budgeter | I want to use the budget buddy app to discuss with other users about our budgets |
+
+
+
+
 ### User Stories
 | Priority | User Description | Technical Implementation |
 | -------- | ---------------- | ------------------------ |
