@@ -11,4 +11,16 @@ The Budget Buddy web app would provide our users with the necessary tools to bud
 ### Why as developers do we want to make this:
 Our ambition to create this budget buddy web app stems from our past experience— most of us are in/have taken FIN 205 (Personal Finance) and we learned that budgeting is a powerful tool for people to use when planning their financial futures. Budgeting isn’t just preparing users to be financially independent, it extends to defining a person's future whether it be financially or it be in their character as a person. We wanted to create a platform where people can budget, learn, and grow alongside buddies.
 
-## User Personas
+## User Stories
+| Priority | User Description | Technical Implementation |
+| -------- | ---------------- | ------------------------ |
+| P0 | As a user, I want to login and logout of my budget account with all my information stored and secured |Establish sessions and authentication in app.js; storing budget information in mongoDB but accessing it by filtering for the users id |
+| P0 | As a new user, I want to create and save my projected budget to be used in the budget buddy web app | Store projected info in db using POST (in the projectedBudget db) |
+| P0 | As a user who added their budget, I want to view my budget information in comparison to my actual spendings | Display stored budget information using GET to pull from mongoDB – filtered with the session users userID |
+| P0 | As a user that has made purchases, I want to input my actual spending and income (easy to input info)| Store/update spending information in database (in the actualBudget) using POST |
+| P0 | As a user, I want to see my net income and profit represented over a set period of time. | Using the GET API endpoints, read income data from database, apply filter for user specified time range, and calculate/return the net income and profit |
+| P1 | As a user, I want to post my budgets to get input from other users | Create posts using POST and connect the post to the user with their user id |
+| P1 | As a buddy that is interested in helping others out with their budgets, I want to comment on other budget posts | Create a comment using POST and connect to the post and user with the post id and user id |
+| P1  | As a buddy, I want to like other budgeters posts so I can show I like it and maybe come back to it later | Create a like using POST and connect to the post and user with the post id and user id |
+| P1  | As a buddy, I want to see how people reacted to my posted budget through comments and likes | Display comments and likes for each budget using GET |
+| P1  | As a user, I want the choice to make my profile public or private | Only show user’s profile to others if they have public option chosen (GET with parameters) |
