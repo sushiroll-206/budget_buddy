@@ -11,7 +11,10 @@ The Budget Buddy web app would provide our users with the necessary tools to bud
 ### Why as developers do we want to make this:
 Our ambition to create this budget buddy web app stems from our past experience— most of us are in/have taken FIN 205 (Personal Finance) and we learned that budgeting is a powerful tool for people to use when planning their financial futures. Budgeting isn’t just preparing users to be financially independent, it extends to defining a person's future whether it be financially or it be in their character as a person. We wanted to create a platform where people can budget, learn, and grow alongside buddies.
 
-## User Stories
+## Technical Description
+### Architectural Diagram
+
+### User Stories
 | Priority | User Description | Technical Implementation |
 | -------- | ---------------- | ------------------------ |
 | P0 | As a user, I want to login and logout of my budget account with all my information stored and secured |Establish sessions and authentication in app.js; storing budget information in mongoDB but accessing it by filtering for the users id |
