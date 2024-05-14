@@ -6,3 +6,41 @@ body {
 a {
   color: #00B7FF;
 }
+
+/* NavBar */
+nav {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgb(46, 118, 53);
+  display: flex;
+}
+
+nav ul {
+  display: flex;
+  padding-left: 0;
+}
+
+nav li{
+  display: inline-block;
+  width: 85px;
+  text-align: center;
+}
+
+nav img {
+  max-height: 50px;
+}
+
+nav a {
+  color: beige;
+  text-decoration: none;
+  font-family: "Public Sans", sans-serif;
+}
+/* NavBar End */
+
+
+h1 {
+  padding-top: 3rem;
+  font-family: "Outfit", sans-serif;
+}
