@@ -1,6 +1,6 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
-let models = {}
+let models = {};
 
 // Connect to MongoDB 
 console.log("Connecting to MongoDB");
@@ -19,8 +19,7 @@ console.log("User Schema Created");
 
 // Posts Table (Likes)
 const postSchema = new mongoose.Schema({
-    url: String,
-    title: String,
+    userImage: String,
     description: String,
     username: String,
     likes: [String],
@@ -44,7 +43,8 @@ const projectedBudgetSchema = new mongoose.Schema({
     type: String, 
     amount: Number,
     description: String,
-    username: String
+    username: String,
+    post: { type: mongoose.Schema.Types.ObjectId, ref: 'Post' }
 });
 models.projectedBudget = mongoose.model('ProjectedBudget', projectedBudgetSchema);
 console.log("Projected Budget Schema Created");
@@ -53,7 +53,8 @@ const actualBudgetSchema = new mongoose.Schema({
     type: String, 
     amount: Number,
     description: String,
-    username: String
+    username: String,
+    post: { type: mongoose.Schema.Types.ObjectId, ref: 'Post' }
 });
 models.actualBudget = mongoose.model('ActualBudget', actualBudgetSchema);
 console.log("Actual Budget Schema Created");
