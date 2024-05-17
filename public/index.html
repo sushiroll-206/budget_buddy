@@ -4,34 +4,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Budget Buddy</title>
-    <link href="./output.css" rel="stylesheet">
+    <link href="./stylesheets/output.css" rel="stylesheet">
     <script src="javascripts/api_version.js"></script>
     <script src="javascripts/index.js"></script>
   </head>
 
-  <body>
+  <body class="flex m-0">
     <!-- Add Navbar Here -->
-    <nav>
+    <nav class="flex flex-col justify-start w-auto bg-[#2E7635]">
       <!-- Page Logo -->
-      <a href="index.html"><img src="" alt="Home"></a>
+      <div>
+        <a class="flex px-11 pt-12" href="index.html">
+          <img src="" alt="Home">
+          <h3 class="pl-2">Budget Buddy</h3>
+        </a>
+      </div>
       <!-- tab to different pages -->
-      <ul>
-          <li>
-              <a href="myBudget.html">My Budget</a>
-          </li>
-          <li>
-              <a href="budgetBuddy.html">Budget with Buddies</a>
-          </li>
-          <li>
-              <a href="login.html">Login</a>
-          </li>
-      </ul>
+      <div class="flex flex-col justify-between h-full">
+        <ul class="menu flex flex-col p-8 pr-11">
+            <li class="flex p-3">
+                <a href="myBudget.html"><h3 class="pl-2">My Budget</h3></a>
+            </li>
+            <li class="flex p-3">
+              <a href="budgetBuddy.html"><h3 class="pl-2">Budget with Buddies</h3></a>
+            </li>
+            <li class="flex p-3">
+              <a href="login.html"><h3 class="pl-2">Login</h3></a>
+            </li>
+        </ul>
+        <a class="flex p-11" href="*">
+          <img src="" alt="user profile">
+          <h3 class="pl-2">Profile</h3>
+        </a>
+      </div>
     </nav>
 
-    <h1>Budget Buddy</h1>
-    <p>Welcome to Your Budget Buddy!</p>
-
-    <!-- where we'll put results from the server for now?  -->
-    <div id="results"></div>
+    <main class="dashboard flex flex-col h-screen m-3 w-screen">
+      <article>
+        <h1 class="mt-6">Dashboard</h1>
+        <p>Welcome to Your Budget Buddy!</p>
+        <section class="grid grid-rows-2 grid-flow-col gap-4">
+          <div class="grid-item"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item"></div>
+          <div class="grid-item"></div>
+        </section>
+      </article>
+         
+      <!-- where we'll put results from the server for now?  -->
+      <div id="results"></div>
+      <footer class="mt-auto text-center">
+        <p>Made with &#x2764; from the Budget Buddy Creators</p>
+      </footer>
+    </main>
   </body>
 </html>
