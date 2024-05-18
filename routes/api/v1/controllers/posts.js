@@ -2,8 +2,6 @@ import express from 'express';
 
 var router = express.Router();
 
-// import getURLPreview from '../utils/urlPreviews.js';
-
 router.post('/', async(req, res) => {
     try {
         if(req.session.isAuthenticated) {
