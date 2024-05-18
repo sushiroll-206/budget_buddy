@@ -88,4 +88,15 @@ router.post('/projected', async (req, res) => {
   }
 });
 
+router.get('/projected', async (req, res) => {
+  try {
+    const { postId } = req.params;
+    const budgets = await ProjectedBudget.find({ postId });
+    res.json(budgets);
+  } catch (error) {
+    res.status(500).send('Server error');
+  }
+})
+
 export default router;
+
