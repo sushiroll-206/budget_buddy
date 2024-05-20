@@ -4,15 +4,17 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import sessions from 'express-session';
 import WebAppAuthProvider from 'msal-node-wrapper'
+// To install msal-node-wrapper, run:
+//     npm install https://gitpkg.now.sh/kylethayer/ms-identity-javascript-nodejs-tutorial-msal-node-v2-/Common/msal-node-wrapper?main
 
 // // for sessions and azure auth
 //
 const authConfig = {
     auth: {
-   	clientId: "b6338b95-4570-48f7-8fa9-577620cc9d99",
+   	clientId: "7f5aacfa-a950-4748-9120-94ac5d7c7149",
     	authority: "https://login.microsoftonline.com/f6b6dd5b-f02f-441a-99a0-162ac5060bd2",
-    	clientSecret: "_V28Q~7jO9RcKrQuB2eDP5b_.4fdcgXMwbTGmclP",
-    	redirectUri: "https://a7-websharer.sohshuntateishi.me/redirect"
+    	clientSecret: "gxL8Q~ynHSo~WAfkLLoW2XpOO2b6ueg-CpqBidyD",
+    	redirectUri: "/redirect"
     },
 	system: {
     	loggerOptions: {
@@ -80,7 +82,7 @@ app.get('/fakelogin', (req, res) => {
     session.account.name = newName;
     session.account.username = newName;
     console.log("set session");
-    res.redirect("/api/v3/users/myIdentity");
+    res.redirect("/api/v1/users/myIdentity");
 });
 
 // use this by going to a url like: 
@@ -91,7 +93,7 @@ app.get('/fakelogout', (req, res) => {
     session.isAuthenticated = false;
     session.account = {};
     console.log("you have fake logged out");
-    res.redirect("/api/v3/users/myIdentity");
+    res.redirect("/api/v1/users/myIdentity");
 });
 
 app.get(

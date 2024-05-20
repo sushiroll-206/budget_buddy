@@ -1,4 +1,3 @@
-
 const escapeHTML = str => !str ? str : str.replace(/[&<>'"]/g, 
     tag => ({
         '&': '&amp;',
