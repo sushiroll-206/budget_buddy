@@ -64,7 +64,7 @@ const authProvider = await WebAppAuthProvider.WebAppAuthProvider. initialize(aut
 app.use(authProvider.authenticate());
 
 app.use((req, res, next) => {
-    console.log("session info:", req. session)
+    console.log("session info:", req.session)
     next();
 })
 

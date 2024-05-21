@@ -6,6 +6,7 @@ router.post('/', async(req, res) => {
     try {
         if(req.session.isAuthenticated) {
             const newPost = new req.models.Post({
+                userImage: String,
                 username: req.session.account.username,
                 description: req.body.description,
                 likes: req.body.likes,
@@ -40,9 +41,17 @@ router.get('/', async function(req, res) {
       let postData = await Promise.all(
         allPosts.map(async post => {
             try {
-                let {username, description, id, likes, created_date} = post;
-                let htmlPreview = await getURLPreview(url);
-                return {description, username, id, likes, created_date};
+                let {userImage, username, description, id, likes, created_date} = post;
+                let userPreview = 
+                `
+                <div class="preview">
+                    <img src="${escapeHTML(userImage)}style="max-height: 200px; max-width: 270px;">
+                    <p class="username">${username}</p>
+                    <p class="description>${description}</p>
+                </div>
+                `;
+
+                return {userImage, description, userPreview, username, id, likes, created_date};
             }
             catch(error) {
                 console.log("Error:", error);
