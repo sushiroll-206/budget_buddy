@@ -12,8 +12,8 @@ router.get('/', async (req, res) => {
     let actualBudget = await Promise.all(
       allActual.map(async actual => {
         try {
-          let {username, type, amount, post, description} = actual;
-          return {username, type, amount, post, description};
+          let {username, type, amount} = actual;
+          return {username, type, amount};
         }
         catch(error) {
           console.log("Error: ", error);
@@ -27,8 +27,8 @@ router.get('/', async (req, res) => {
     let projectedBudget = await Promise.all(
       allProjected.map(async projected => {
         try {
-          let {username, type, amount, post, description} = projected;
-          return {username, type, amount, post, description};
+          let {username, type, amount} = projected;
+          return {username, type, amount};
         }
         catch(error) {
           console.log("Error: ", error);
@@ -52,8 +52,8 @@ router.post('/actual', async (req, res) => {
         username: req.session.account.username,
         type: req.body.type, 
         amount: req.body.amount,
-        post: req.body.postID,
-        description: req.body.description
+        // post: req.body.postID,
+        // description: req.body.description
       });
       await newActual.save();
 
@@ -69,13 +69,14 @@ router.post('/actual', async (req, res) => {
 // POST projected budget for user
 router.post('/projected', async (req, res) => {
   try {
+    console.log("This is the body " + req.body)
     if(req.session.isAuthenticated) {
       const newProjected = new req.models.ProjectedBudget({
         username: req.session.account.username,
         type: req.body.type, 
         amount: req.body.amount,
-        post: req.body.postID,
-        description: req.body.description
+        // post: req.body.postID,
+        // description: req.body.description
       });
       await newProjected.save();
 
@@ -83,7 +84,7 @@ router.post('/projected', async (req, res) => {
     }
   }
   catch(error) {
-    console.log("error: ", err);
+    console.log("error: ", error);
     res.status(500).json({status: "error", error: error});
   }
 });
