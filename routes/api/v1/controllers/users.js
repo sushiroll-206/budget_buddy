@@ -7,8 +7,7 @@ router.get('/myIdentity', function(req, res, next) {
     res.json({
         status: "loggedin",
         user: {name: req.session.account.name,
-               username: req.session.account.username,
-               email: req.body.email}
+               username: req.session.account.username}
     }); 
 
   } else{
