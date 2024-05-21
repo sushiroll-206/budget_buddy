@@ -14,9 +14,6 @@ function SideNavbar() {
               <a href="index.html"><h3 class="pl-2">Dashboard</h3></a>
             </li>
             <li class="flex p-3">
-                <a href="myBudget.html"><h3 class="pl-2">My Budget</h3></a>
-            </li>
-            <li class="flex p-3">
               <a href="budgetBuddy.html"><h3 class="pl-2">Budget with Buddies</h3></a>
             </li>
             <li class="flex p-3">
