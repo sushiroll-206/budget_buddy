@@ -3,7 +3,7 @@ var router = express.Router();
 
 
 // GET actual and projected budget for user
-router.get('/', async (req, res) => {
+router.get('/actual', async (req, res) => {
 
   let username = req.query.username;
 
@@ -23,6 +23,32 @@ router.get('/', async (req, res) => {
     );
     res.send(actualBudget);
     
+    let allProjected = await req.models.ProjectedBudget.find({username: username});
+    let projectedBudget = await Promise.all(
+      allProjected.map(async projected => {
+        try {
+          let {username, type, amount, post, description} = projected;
+          return {username, type, amount, post, description};
+        }
+        catch(error) {
+          console.log("Error: ", error);
+          return {type, error};
+        }
+      })
+    );
+    res.send(projectedBudget);
+  }
+  catch(error) {
+    console.log("Error: ", error);
+    res.status(500).json({status: "error", error: error});
+  }
+});
+
+router.get('/projected', async (req, res) => {
+
+  let username = req.query.username;
+
+  try {
     let allProjected = await req.models.ProjectedBudget.find({username: username});
     let projectedBudget = await Promise.all(
       allProjected.map(async projected => {
