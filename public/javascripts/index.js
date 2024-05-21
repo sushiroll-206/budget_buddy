@@ -71,7 +71,8 @@ async function saveIncomeBudgetInfo(){
   try {
     await fetchJSON(`api/${apiVersion}/budgets/projected`, {
       method: "POST",
-      body: {type: incomeTitle,
+      body: {type: "income",
+            description: incomeTitle,
             amount: incomeAmount}
     });
   }
@@ -101,7 +102,8 @@ async function saveExpenseBudgetInfo(){
 
  let responseJson = await fetchJSON(`api/${apiVersion}/budgets/projected`, {
     method: "POST",
-    body: {type: expenseName,
+    body: {type: "expense",
+           description: expenseName,
            amount: expenseAmount
     }
 })
