@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+
 import sessions from 'express-session';
 import WebAppAuthProvider from 'msal-node-wrapper'
 // To install msal-node-wrapper, run:
@@ -14,7 +15,8 @@ const authConfig = {
    	clientId: "7f5aacfa-a950-4748-9120-94ac5d7c7149",
     	authority: "https://login.microsoftonline.com/f6b6dd5b-f02f-441a-99a0-162ac5060bd2",
     	clientSecret: "gxL8Q~ynHSo~WAfkLLoW2XpOO2b6ueg-CpqBidyD",
-    	redirectUri: "/redirect"
+        redirectUri: "https://budget-buddy.tjwong22.me/redirect" // for deployed website
+    	// redirectUri: "/redirect" // for localhost MAKE SURE TO SWAP OUT
     },
 	system: {
     	loggerOptions: {
@@ -39,17 +41,17 @@ const __dirname = dirname(__filename);
 
 var app = express();
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
 // // middleware to add mongoose models to req
 app.use((req, res, next) => {
     req.models = models
     next()
 })
+
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
 // authentication
 const oneDay = 1000 * 60 * 60 * 24
