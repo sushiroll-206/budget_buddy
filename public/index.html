@@ -5,47 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Budget Buddy</title>
     <link href="./stylesheets/output.css" rel="stylesheet">
-    <script src="javascripts/utils.js"></script>
+    <script type="module" src="./components/navbar.js"></script>
     <script src="javascripts/api_version.js"></script>
+    <script src="javascripts/utils.js"></script>
     <script src="javascripts/identity.js"></script>
     <script src="javascripts/index.js"></script>
   </head>
 
   <body class="flex m-0">
     <!-- Add Navbar Here -->
-    <nav class="flex flex-col justify-start w-auto bg-[#2E7635]">
-      <!-- Page Logo -->
-      <div>
-        <a class="flex px-11 pt-12" href="index.html">
-          <img src="./assets/BudgetBuddy.png" alt="Home">
-          <h3 class="pl-2">Budget Buddy</h3>
-        </a>
-      </div>
-      <!-- tab to different pages -->
-      <div class="flex flex-col justify-between h-full">
-        <ul class="menu flex flex-col p-8 pr-11">
-            <li class="flex p-3">
-                <a href="myBudget.html"><h3 class="pl-2">My Budget</h3></a>
-            </li>
-            <li class="flex p-3">
-              <a href="budgetBuddy.html"><h3 class="pl-2">Budget with Buddies</h3></a>
-            </li>
-            <li class="flex p-3">
-              <a href="login.html"><h3 class="pl-2">Login</h3></a>
-            </li>
-        </ul>
-        <a class="flex p-11" href="*">
-          <img src="" alt="user profile">
-          <h3 class="pl-2">Profile</h3>
-        </a>
-      </div>
-    </nav>
+    <nav class="navbar fixed flex flex-col justify-start w-auto h-full bg-[#2E7635] mr-8"></nav>
 
-    <main class="dashboard flex flex-col h-screen m-3 w-screen">
+    <main class="dashboard flex flex-col h-screen w-full">
       <article>
         <h1 class="mt-6">Dashboard</h1>
-        <p>Welcome to Your Budget Buddy!</p>
-        <section class="grid grid-rows-2 grid-flow-col gap-4">
+        <p class="my-2">Welcome to Your Budget Buddy!</p>
+        <section class="grid grid-rows-4 grid-flow-col gap-4 mr-8">
           <div class="grid-item"></div>
           <div class="grid-item"></div>
           <div class="grid-item"></div>
@@ -54,7 +29,7 @@
       </article>
          
       <!-- where we'll put results from the server for now?  -->
-      <div id="userCardsDisplay"></div>
+      <div id="results"></div>
       <footer class="mt-auto text-center">
         <p>Made with &#x2764; from the Budget Buddy Creators</p>
       </footer>
