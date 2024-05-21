@@ -20,7 +20,7 @@ function SideNavbar() {
               <a href="budgetBuddy.html"><h3 class="pl-2">Budget with Buddies</h3></a>
             </li>
             <li class="flex p-3">
-              <a href="login.html"><h3 class="pl-2">Login</h3></a>
+              <div id="identity_div">loading...</div>
             </li>
         </ul>
         <a class="flex px-11 py-6" href="*">

@@ -1,15 +1,23 @@
 // budget app functions go here
-async function init(){
+
+// Initialize for index.html
+async function initIndex(){
 
     await loadIdentity();
-    fetchUserCards(); 
-    console.log("Init")
+    await fetchUserCards(); 
+    console.log("Init Index");
+}
+
+// Initialize for the others because only index.html needs the user cards
+async function init() {
+  await loadIdentity();
+  console.log("Init for everything else");
 }
 
 
-document.addEventListener('DOMContentLoaded', async () => {
-    await fetchUserCards();
-  });
+// document.addEventListener('DOMContentLoaded', async () => {
+//     await fetchUserCards();
+//   });
 
 async function fetchUserCards() {
     try {
