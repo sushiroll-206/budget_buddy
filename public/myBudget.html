@@ -10,6 +10,7 @@
     <script src="javascripts/utils.js"></script>
     <script src="javascripts/identity.js"></script>
     <script src="javascripts/index.js"></script>
+    <script src="javascripts/myBudget.js"></script>
   </head>
 
   <body class="flex m-0" onload="init()">
@@ -19,6 +20,7 @@
     <main class="dashboard flex flex-col h-screen w-full">
       <article>
       <h1>My Budget</h1>
+      <h2>Info for user: <span id="username-span"></span></h2>
       <p>we'll add budget stuff Here</p>
       <div id="haha">
         <div class="fullBudgetInput flex flex-col">
@@ -54,8 +56,9 @@
       </article>
 
       <!-- where we'll put results from the server for now?  -->
-      <div id="results">
+      <div id="userBudgetDisplayFrame">
         <h2>Current Budget Overview</h2>
+        <div id="userBudgetDisplay"></div>
         <button onclick="loadUserBudget()">Refresh</button>
       </div>
       <footer class="mt-auto text-center">
