@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+html, body {
   font: 14px Inter, "Lucida Grande", Helvetica, Arial, sans-serif;
   min-height: 100vh;
 }
@@ -21,7 +21,7 @@ h3 {
 }
 
 .grid-item {
-  height: 250px;
+  height: 500px;
   border: solid 1px #000;
 }
 

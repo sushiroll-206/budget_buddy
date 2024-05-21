@@ -14,7 +14,7 @@
 
   <body class="flex m-0" onload="init()">
     <!-- Add Navbar Here -->
-    <nav class="navbar fixed flex flex-col justify-start w-auto h-full bg-[#2E7635] mr-8"></nav>
+    <nav class="navbar flex flex-col justify-start w-auto h-full bg-[#2E7635] mr-8"></nav>
 
     <main class="dashboard flex flex-col h-screen w-full">
       <article>
@@ -25,30 +25,30 @@
           <h2><strong>Incomes</strong></h2>
           <!-- row of income details -->
           <div class="budgetIncomeInputs flex flex-row">
-            <div class="flex flex-col">
+            <div class="flex flex-col pr-2">
               <label>Income Type:</label>
-              <input type="text" id="incomeTitle"/>
+              <input type="text" id="incomeTitle" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
             </div>
-            <div class="flex flex-col">
+            <div class="flex flex-col pr-2">
               <label>Amount:</label>
-              <input type="number" id="incomeAmount"/>
+              <input type="number" id="incomeAmount" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
             </div>
+            <button onclick="saveIncomeBudgetInfo()">Save Income Info</button>
           </div>
-          <button onclick="saveIncomeBudgetInfo()">Save Income Info</button>
-  
+          
           <h2><strong>Expenses</strong></h2>
           <!-- row of expense details -->
           <div class="budgetExpenseInputs flex flex-row">
-            <div class="flex flex-col">
+            <div class="flex flex-col pr-2">
               <label>Expense Type:</label>
-              <input type="text" id="expenseName"/>
+              <input type="text" id="expenseName" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
             </div>
-            <div class="flex flex-col">
+            <div class="flex flex-col pr-2">
               <label>Amount:</label>
-              <input type="number" id="expenseAmount"/>
+              <input type="number" id="expenseAmount" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
             </div>
+            <button onclick="saveExpenseBudgetInfo()">Save Expense Info</button>
           </div>
-          <button onclick="saveExpenseBudgetInfo()">Save Expense Info</button>
         </div>
       </div>
       </article>
