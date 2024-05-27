@@ -64,6 +64,8 @@ async function fetchUserCards() {
 // takes inputted income budget info and posts it to the /budgets post router
 async function saveIncomeBudgetInfo(){
   let incomeTitle = document.getElementById('incomeTitle').value
+  // make expense name case sensitive (upper first, lower rest)
+  incomeTitle = incomeTitle.charAt(0).toUpperCase() + incomeTitle.slice(1)
   let incomeAmount = document.getElementById('incomeAmount').value
   let incomeDescription = document.getElementById('incomeDescription').value
   // let userJSON = await fetchJSON(`api/${apiVersion}/users/myIdentity`)
@@ -100,6 +102,8 @@ document.getElementById(`incomeDescription`).value = "";
 // takes inputted expense budget information and posts it to the /budgets post router
 async function saveExpenseBudgetInfo(){
   let expenseName = document.getElementById('expenseName').value
+  // make expense name case sensitive (upper first, lower rest)
+  expenseName = expenseName.charAt(0).toUpperCase() + expenseName.slice(1)
   let expenseAmount = document.getElementById('expenseAmount').value
   let expenseDescription = document.getElementById('expenseDescription').value
   // let userJSON = await fetchJSON(`api/${apiVersion}/users/myIdentity`)

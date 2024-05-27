@@ -41,6 +41,7 @@ console.log("Comment Schema Created");
 
 const projectedBudgetSchema = new mongoose.Schema({
     type: String, 
+    category: String,
     amount: {type: Number, required: true},
     description: String,
     username: String,
@@ -50,7 +51,8 @@ models.ProjectedBudget = mongoose.model('ProjectedBudget', projectedBudgetSchema
 console.log("Projected Budget Schema Created");
 
 const actualBudgetSchema = new mongoose.Schema({
-    type: String, 
+    type: String,
+    category: String,
     amount: {type: Number, required: true},
     description: String,
     username: String,

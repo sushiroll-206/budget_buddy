@@ -29,7 +29,7 @@
           <!-- row of income details -->
           <div class="budgetIncomeInputs flex flex-row">
             <div class="flex flex-col pr-2">
-              <label>Income Type:</label>
+              <label>Income Category/Type:</label>
               <input type="text" id="incomeTitle" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
             </div>
             <div class="flex flex-col pr-2">
@@ -47,7 +47,7 @@
           <!-- row of expense details -->
           <div class="budgetExpenseInputs flex flex-row">
             <div class="flex flex-col pr-2">
-              <label>Expense Type:</label>
+              <label>Expense Category/Type:</label>
               <input type="text" id="expenseName" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
             </div>
             <div class="flex flex-col pr-2">
@@ -65,7 +65,7 @@
 
       <!-- where we'll put results from the server for now?  -->
       <div id="userBudgetDisplayFrame">
-        <h1>Current Budget Overview</h1>
+        <h1 class="mt-6">Current Budget Overview</h1>
         <div id="userBudgetDisplay"></div>
         <button onclick="loadUserBudget()">Refresh</button>
       </div>

@@ -48,11 +48,28 @@ async function loadUserInfoBudget(username){
     console.log(budgetJson)
     actualBudgets = budgetJson.actualBudgets;
     projectedBudgets= budgetJson.projectedBudgets;
-    console.log(projectedBudgets)
+    // Divide budget into projected incomes and expenses
+    let projectedIncomes = []
+    let projectedExpenses = []
+
+    // maps each budget instance as an income or expense
+    projectedBudgets.map(budgetInfo => {
+        if(budgetInfo.type == "Income"){
+            // budgetInfo.category
+            projectedIncomes.push(budgetInfo)
+        }
+        if(budgetInfo.type == "Expense"){
+            projectedExpenses.push(budgetInfo)
+        }
+    });
+
+    console.log(projectedIncomes)
+    console.log(projectedExpenses)
+
     let budgetHTML = projectedBudgets.map(budgetInfo => {
         return `
         <div class="post">
-            <p>Type: ${budgetInfo.type}</p>
+            <p>Category: ${budgetInfo.category}</p>
             <p>Amount: ${budgetInfo.amount}</p>
         </div>`
     }).join("\n");
