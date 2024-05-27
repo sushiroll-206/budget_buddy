@@ -21,8 +21,9 @@
       <article>
       <h1>My Budget</h1>
       <h2>Info for user: <span id="username-span"></span></h2>
-      <p>we'll add budget stuff Here</p>
-      <div id="haha">
+      
+      <!-- Space to input budget details -->
+      <div id="budgetInputs">
         <div class="fullBudgetInput flex flex-col">
           <h2><strong>Incomes</strong></h2>
           <!-- row of income details -->
@@ -34,6 +35,10 @@
             <div class="flex flex-col pr-2">
               <label>Amount:</label>
               <input type="number" id="incomeAmount" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+            </div>
+            <div class="flex flex-col pr-2">
+              <label>Description:</label>
+              <input type="text" id="incomeDescription" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
             </div>
             <button onclick="saveIncomeBudgetInfo()">Save Income Info</button>
           </div>
@@ -49,21 +54,25 @@
               <label>Amount:</label>
               <input type="number" id="expenseAmount" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
             </div>
+            <div class="flex flex-col pr-2">
+              <label>Description:</label>
+              <input type="text" id="expenseDescription" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+            </div>
             <button onclick="saveExpenseBudgetInfo()">Save Expense Info</button>
           </div>
         </div>
-      </div>
-      </article>
+      </div>      
 
       <!-- where we'll put results from the server for now?  -->
       <div id="userBudgetDisplayFrame">
-        <h2>Current Budget Overview</h2>
+        <h1>Current Budget Overview</h1>
         <div id="userBudgetDisplay"></div>
         <button onclick="loadUserBudget()">Refresh</button>
       </div>
       <footer class="mt-auto text-center">
         <p>Made with &#x2764; from the Budget Buddy Creators</p>
       </footer>
+    </article>
     </main>
   </body>
 </html>

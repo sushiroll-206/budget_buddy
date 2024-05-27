@@ -65,14 +65,18 @@ async function fetchUserCards() {
 async function saveIncomeBudgetInfo(){
   let incomeTitle = document.getElementById('incomeTitle').value
   let incomeAmount = document.getElementById('incomeAmount').value
+  let incomeDescription = document.getElementById('incomeDescription').value
   // let userJSON = await fetchJSON(`api/${apiVersion}/users/myIdentity`)
   // let userName = userJSON.user.name
 
   try {
     await fetchJSON(`api/${apiVersion}/budgets/projected`, {
       method: "POST",
-      body: {type: incomeTitle,
-            amount: incomeAmount}
+      body: {type: "Income",
+            category: incomeTitle,
+            amount: incomeAmount,
+            description: incomeDescription
+            }
     });
   }
   catch(error) {
@@ -90,23 +94,28 @@ console.log("successfully sent")
 
 document.getElementById(`incomeTitle`).value = "";
 document.getElementById(`incomeAmount`).value = "";
+document.getElementById(`incomeDescription`).value = "";
 }
 
 // takes inputted expense budget information and posts it to the /budgets post router
 async function saveExpenseBudgetInfo(){
   let expenseName = document.getElementById('expenseName').value
   let expenseAmount = document.getElementById('expenseAmount').value
+  let expenseDescription = document.getElementById('expenseDescription').value
   // let userJSON = await fetchJSON(`api/${apiVersion}/users/myIdentity`)
   // let userName = userJSON.userInfo.name
 
  let responseJson = await fetchJSON(`api/${apiVersion}/budgets/projected`, {
     method: "POST",
-    body: {type: expenseName,
-           amount: expenseAmount
-    }
+    body: {type: "Expense",
+          category: expenseName,
+          amount: expenseAmount,
+          description: expenseDescription
+          }
 })
 
 document.getElementById(`expenseName`).value = "";
 document.getElementById(`expenseAmount`).value = "";
+document.getElementById(`expenseDescription`).value = "";
 }
 
