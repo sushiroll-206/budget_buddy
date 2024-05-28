@@ -10,9 +10,10 @@
     <script src="javascripts/utils.js"></script>
     <script src="javascripts/identity.js"></script>
     <script src="javascripts/index.js"></script>
+    <script src="javascripts/netCalcs.js"></script>
   </head>
 
-  <body class="flex m-0" onload="initIndex()">
+  <body class="flex m-0" onload="init()">
     <!-- Add Navbar Here -->
     <nav class="navbar flex flex-col justify-start h-screen bg-[#2E7635] mr-8"></nav>
 
@@ -20,11 +21,24 @@
       <article>
         <h1 class="mt-6">Dashboard</h1>
         <p class="my-2">Welcome to Your Budget Buddy!</p>
+        <h2>Your Stats</h2>
         <section class="grid grid-rows-2 grid-flow-col gap-4 mr-8">
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
-          <div class="grid-item"></div>
+          <div class="grid-item">
+            <p>Projected vs. Actual Net Income</p>
+            <button onclick="netIncome()">Get My Net Income</button>
+            <div id="projectedIncome">Projected Income goes here</div>
+            <div id="projectedExpense">Projected Expense goes here</div>
+          </div>
+          <div class="grid-item">
+            <p>Highest Expense Category</p>
+            <p>Hold off on the drinking maybe</p>
+          </div>
+          <div class="grid-item">
+            <p>Maybe another stat</p>
+          </div>
+          <div class="grid-item">
+            <p>Maybe another stat</p>
+          </div>
         </section>
       </article>
          
