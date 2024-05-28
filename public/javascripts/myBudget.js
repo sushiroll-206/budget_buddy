@@ -49,6 +49,11 @@ async function loadUserInfoBudget(username) {
     console.log(budgetJson)
     actualBudgets = budgetJson.actualBudgets;
     projectedBudgets = budgetJson.projectedBudgets;
+
+    // radio buttons
+    let budgetType = document.getElementById("projected").checked;
+    console.log(budgetType)
+
     // Divide budget into projected incomes and expenses
     let projectedIncomes = []
     let projectedExpenses = []

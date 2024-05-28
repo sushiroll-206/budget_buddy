@@ -54,6 +54,20 @@
         <h1 class="mt-12">My Budget</h1>
         <h2 class="my-2">Info for user: <span id="username-span"></span></h2>
         
+        <!-- Radio Buttons to change whether input is Projected or Actual -->
+        <form>
+          <fieldset>
+            <legend>Please select the type of budget you want to add to:</legend>
+            <br>
+            <div id="radioButtons">
+              <input type="radio" id="projected" name="budget_type" value="Projected">
+              <label for="projected">Projected</label>
+              <input type="radio" id="actual" name="budget_type" value="Actual">
+              <label for="actual">Actual</label>
+            </div>
+          </fieldset>
+        </form>
+
         <!-- Space to input budget details -->
         <div id="budgetInputs">
           <div class="fullBudgetInput flex flex-col">
