@@ -97,6 +97,7 @@ console.log("successfully sent")
 document.getElementById(`incomeTitle`).value = "";
 document.getElementById(`incomeAmount`).value = "";
 document.getElementById(`incomeDescription`).value = "";
+loadUserBudget()
 }
 
 // takes inputted expense budget information and posts it to the /budgets post router
@@ -121,5 +122,6 @@ async function saveExpenseBudgetInfo(){
 document.getElementById(`expenseName`).value = "";
 document.getElementById(`expenseAmount`).value = "";
 document.getElementById(`expenseDescription`).value = "";
+loadUserBudget()
 }
 

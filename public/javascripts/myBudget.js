@@ -52,19 +52,51 @@ async function loadUserInfoBudget(username){
     let projectedIncomes = []
     let projectedExpenses = []
 
-    // maps each budget instance as an income or expense
+    // maps each budget instance as an income or expense -- under their respective category
     projectedBudgets.map(budgetInfo => {
         let transactionCategory = budgetInfo.category
         if(budgetInfo.type == "Income"){
-            projectedIncomes.push(budgetInfo)
+            if(transactionCategory in projectedIncomes){
+                projectedIncomes[transactionCategory].push(budgetInfo)
+            } else {
+                projectedIncomes[transactionCategory] = [budgetInfo]
+            }
         }
         if(budgetInfo.type == "Expense"){
-            projectedExpenses.push(budgetInfo)
+            if(transactionCategory in projectedExpenses){
+                projectedExpenses[transactionCategory].push(budgetInfo)
+                // projectedExpenses.push({[transactionCategory]: budgetInfo})
+            } else {
+                projectedExpenses[transactionCategory] = [budgetInfo]
+            }
         }
     });
 
     console.log(projectedIncomes)
     console.log(projectedExpenses)
+
+    // what needs to be done -- might need to update the projectedBudgets.map
+    let incomeHTML = projectedIncomes.forEach(transactionInfo => {
+        console.log(transactionInfo)
+        let incomeTransactionsHTML = transactionInfo.map(data => {
+            return `
+            <div class="post border">
+                <p>Amount: ${data.amount}</p>
+                <p>Description: ${data.description}
+            </div>
+            `
+        })
+        return incomeTransactionsHTML
+
+        // return `
+        // <div class="post border">
+        //     <p>Amount: ${budgetInfo.amount}</p>
+        //     <p>Description: ${budgetInfo.description}
+        // </div>
+        // `
+    });
+
+    console.log(incomeHTML)
 
     let budgetHTML = projectedBudgets.map(budgetInfo => {
         return `
