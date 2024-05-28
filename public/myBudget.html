@@ -10,6 +10,7 @@
     <script src="javascripts/identity.js"></script>
     <script src="javascripts/index.js"></script>
     <script src="javascripts/myBudget.js"></script>
+    <script src="https://kit.fontawesome.com/5727d82724.js" crossorigin="anonymous"></script>
   </head>
 
   <body class="flex m-0" onload="init()">
@@ -96,8 +97,16 @@
         <button onclick="loadUserBudget()">Refresh</button>
       </div>
       <footer class="mt-auto text-center">
-        <p>Made with &#x2764; from the Budget Buddy Creators</p>
+        <p class="p-3">Made with &#x2764; from the Budget Buddy Creators</p>
       </footer>
     </main>
   </body>
+
+  <script>
+    let btn = document.querySelector('#btn');
+    let navbar = document.querySelector('.navbar');
+    btn.onclick = function() {
+      navbar.classList.toggle('active');
+    };
+  </script>
 </html>
