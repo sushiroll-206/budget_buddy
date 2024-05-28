@@ -5,22 +5,49 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Budget Buddy</title>
     <link href="./stylesheets/output.css" rel="stylesheet">
-    <script type="module" src="./components/navbar.js"></script>
     <script src="javascripts/api_version.js"></script>
     <script src="javascripts/utils.js"></script>
     <script src="javascripts/identity.js"></script>
     <script src="javascripts/index.js"></script>
+    <script src="https://kit.fontawesome.com/5727d82724.js" crossorigin="anonymous"></script>
   </head>
 
-  <body class="flex m-0" onload="initIndex()">
-    <!-- Add Navbar Here -->
-    <nav class="navbar flex flex-col justify-start h-screen bg-[#2E7635] mr-8"></nav>
+  <body onload="initIndex()">
+    <nav class="navbar fixed top-0 left-0 h-full bg-green">
+      <div class="top flex items-center">
+        <!-- Hamburger Menu -->
+        <i class="fa-solid fa-bars" id="btn"></i>
+        <!-- Page Logo -->
+        <a class="logo flex items-center px-9 pt-12 pointer-events-none opacity-0" href="index.html">
+          <img src="./assets/BudgetBuddy.png" alt="Home">
+          <h3 class="pl-2 text-beige">Budget Buddy</h3>
+        </a>
+      </div>
+      <!-- tab to different pages -->
+      <div class="flex flex-col justify-between">
+        <ul class="menu opacity-0 px-4 py-8">
+            <li class="relative">
+              <a href="index.html" class="flex p-3 text-beige no-underline rounded-md  hover:bg-beige hover:text-green"><h3 class="pl-2">Dashboard</h3></a>
+            </li>
+            <li class="relative">
+              <a href="budgetBuddy.html" class="flex p-3 text-beige no-underline rounded-md hover:bg-beige hover:text-green"><h3 class="pl-2">Budget with Buddies</h3></a>
+            </li>
+            <li class="relative p-3">
+              <div id="identity_div">loading...</div>
+            </li>
+        </ul>
+        <a class="flex px-11 py-6 text-beige no-underline hover:bg-green hover:text-beige" href="*">
+          <img src="" alt="user profile">
+          <h3 class="pl-2">Profile</h3>
+        </a>
+      </div>
+    </nav>
 
-    <main class="dashboard flex flex-col w-full">
+    <main class="dashboard relative flex flex-col">
       <article>
-        <h1 class="mt-6">Dashboard</h1>
+        <h1 class="mt-12">Dashboard</h1>
         <p class="my-2">Welcome to Your Budget Buddy!</p>
-        <section class="grid grid-rows-2 grid-flow-col gap-4 mr-8">
+        <section class="grid grid-rows-2 grid-flow-col gap-4">
           <div class="grid-item"></div>
           <div class="grid-item"></div>
           <div class="grid-item"></div>
@@ -31,8 +58,16 @@
       <!-- where we'll put results from the server for now?  -->
       <div id="results"></div>
       <footer class="mt-auto text-center">
-        <p>Made with &#x2764; from the Budget Buddy Creators</p>
+        <p class="p-3">Made with &#x2764; from the Budget Buddy Creators</p>
       </footer>
     </main>
   </body>
+
+  <script>
+    let btn = document.querySelector('#btn');
+    let navbar = document.querySelector('.navbar');
+    btn.onclick = function() {
+      navbar.classList.toggle('active');
+    };
+  </script>
 </html>

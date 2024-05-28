@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Budget Buddy</title>
     <link href="./stylesheets/output.css" rel="stylesheet">
-    <script type="module" src="./components/navbar.js"></script>
     <script src="javascripts/api_version.js"></script>
     <script src="javascripts/utils.js"></script>
     <script src="javascripts/identity.js"></script>
@@ -13,12 +12,39 @@
   </head>
 
   <body class="flex m-0" onload="init()">
-    <!-- Add Navbar Here -->
-    <nav class="navbar flex flex-col justify-start w-auto h-full bg-[#2E7635] mr-8"></nav>
+    <nav class="navbar fixed top-0 left-0 h-full bg-green">
+      <div class="top flex items-center">
+        <!-- Hamburger Menu -->
+        <i class="fa-solid fa-bars" id="btn"></i>
+        <!-- Page Logo -->
+        <a class="logo flex items-center px-9 pt-12 pointer-events-none opacity-0" href="index.html">
+          <img src="./assets/BudgetBuddy.png" alt="Home">
+          <h3 class="pl-2 text-beige">Budget Buddy</h3>
+        </a>
+      </div>
+      <!-- tab to different pages -->
+      <div class="flex flex-col justify-between">
+        <ul class="menu opacity-0 px-4 py-8">
+            <li class="relative">
+              <a href="index.html" class="flex p-3 text-beige no-underline rounded-md  hover:bg-beige hover:text-green"><h3 class="pl-2">Dashboard</h3></a>
+            </li>
+            <li class="relative">
+              <a href="budgetBuddy.html" class="flex p-3 text-beige no-underline rounded-md hover:bg-beige hover:text-green"><h3 class="pl-2">Budget with Buddies</h3></a>
+            </li>
+            <li class="relative p-3">
+              <div id="identity_div">loading...</div>
+            </li>
+        </ul>
+        <a class="flex px-11 py-6 text-beige no-underline hover:bg-green hover:text-beige" href="*">
+          <img src="" alt="user profile">
+          <h3 class="pl-2">Profile</h3>
+        </a>
+      </div>
+    </nav>
 
-    <main class="dashboard flex flex-col h-screen w-full">
+    <main class="dashboard relative flex flex-col">
       <article>
-        <h1 class="mt-6">Budget with Buddies</h1>
+        <h1 class="mt-12">Budget with Buddies</h1>
         <section>
 
         </section>
