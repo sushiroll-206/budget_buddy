@@ -14,7 +14,7 @@
     <script src="https://kit.fontawesome.com/5727d82724.js" crossorigin="anonymous"></script>
   </head>
 
-  <body onload="init()">
+  <body>
     <nav class="navbar fixed top-0 left-0 flex flex-col justify-between h-full bg-green">
       <div class="container">
         <div class="top flex items-center">
@@ -32,7 +32,9 @@
               <a href="index.html" class="flex p-3 text-beige no-underline rounded-md  hover:bg-beige hover:text-green"><h3 class="pl-2">Dashboard</h3></a>
             </li>
             <li class="relative">
-              <a href="myBudget.html" class="flex p-3 text-beige no-underline rounded-md  hover:bg-beige hover:text-green"><h3 class="pl-2">My Budget</h3></a>
+              <div id="myBudget_div">
+                <a href="myBudget.html" class="flex p-3 text-beige no-underline rounded-md  hover:bg-beige hover:text-green"><h3 class="pl-2">My Budget</h3></a>
+              </div>
             </li>
             <li class="relative">
               <a href="budgetBuddy.html" class="flex p-3 text-beige no-underline rounded-md hover:bg-beige hover:text-green"><h3 class="pl-2">Budget with Buddies</h3></a>
@@ -123,6 +125,7 @@
       }
 
       loadIdentity();
+      loadUserBudget();
     };
   </script>
 </html>

@@ -11,6 +11,7 @@
     <script src="javascripts/identity.js"></script>
     <script src="javascripts/index.js"></script>
     <script src="https://kit.fontawesome.com/5727d82724.js" crossorigin="anonymous"></script>
+    <script src="javascripts/netCalcs.js"></script>
     
   </head>
 
@@ -32,7 +33,9 @@
               <a href="index.html" class="flex p-3 text-beige no-underline rounded-md  hover:bg-beige hover:text-green"><h3 class="pl-2">Dashboard</h3></a>
             </li>
             <li class="relative">
-              <a href="myBudget.html" class="flex p-3 text-beige no-underline rounded-md  hover:bg-beige hover:text-green"><h3 class="pl-2">My Budget</h3></a>
+              <div id="myBudget_div">
+                <a href="myBudget.html" class="flex p-3 text-beige no-underline rounded-md  hover:bg-beige hover:text-green"><h3 class="pl-2">My Budget</h3></a>
+              </div>
             </li>
             <li class="relative">
               <a href="budgetBuddy.html" class="flex p-3 text-beige no-underline rounded-md hover:bg-beige hover:text-green"><h3 class="pl-2">Budget with Buddies</h3></a>
@@ -55,9 +58,10 @@
         <section class="grid grid-rows-2 grid-flow-col gap-4 mr-8">
           <div class="grid-item">
             <p>Projected vs. Actual Net Income</p>
+            <br>
             <div id="projectedIncome">Projected Income goes here</div>
             <div id="projectedExpense">Projected Expense goes here</div>
-            <div id="projectedNI">Calculated Net Income goes here</div>
+            <div id="projectedNI">Calculated Net Income for Projected Budget goes here</div>
           </div>
           <div class="grid-item">
             <p>Highest Expense Category</p>
