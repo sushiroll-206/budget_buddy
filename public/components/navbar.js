@@ -16,13 +16,11 @@ function SideNavbar() {
             <li class="flex p-3">
               <a href="budgetBuddy.html"><h3 class="pl-2">Budget with Buddies</h3></a>
             </li>
-            <li class="flex p-3">
-              <div id="identity_div">loading...</div>
-            </li>
         </ul>
         <a class="flex px-11 py-6" href="*">
-          <img src="" alt="user profile">
-          <h3 class="pl-2">Profile</h3>
+          <h3 class="pl-2">
+            <div id="identity_div">loading...</div>
+          </h3>
         </a>
       </div>
     </nav>
