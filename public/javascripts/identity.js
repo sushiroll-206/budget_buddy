@@ -11,15 +11,15 @@ async function loadIdentity(){
         if(identityInfo.status == "loggedin"){
             myIdentity = identityInfo.user.username;
             identity_div.innerHTML = `
-            <a href="/myBudget.html?user=${encodeURIComponent(identityInfo.user.username)}">${escapeHTML(identityInfo.user.name)} (${escapeHTML(identityInfo.user.username)})</a>
-            <a href="signout" class="btn btn-danger" role="button">Log out</a>`;
+            <a class="pl-2 pb-3 text-beige no-underline" href="/myBudget.html?user=${encodeURIComponent(identityInfo.user.username)}">${escapeHTML(identityInfo.user.name)} (${escapeHTML(identityInfo.user.username)})</a><br><br>
+            <a href="signout" class="btn btn-danger pl-2 text-beige no-underline" role="button">Log out</a>`;
             if(document.getElementById("results")){
                 document.getElementById("results").classList.remove("d-none");
             }
         } else { //logged out
             myIdentity = undefined;
             identity_div.innerHTML = `
-            <a href="signin" class="btn btn-primary pl-2" role="button">Log in</a>`;
+            <a href="signin" class="btn btn-primary pl-2 text-beige no-underline" role="button">Log in</a>`;
             if(document.getElementById("results")){
                 document.getElementById("results").classList.add("d-none");
             }

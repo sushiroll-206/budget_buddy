@@ -5,6 +5,7 @@
 html, body {
   font: 14px Inter, "Lucida Grande", Helvetica, Arial, sans-serif;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 a {
@@ -25,22 +26,61 @@ h3 {
 }
 
 .grid-item {
-  height: 500px;
+  max-width: 100%;
+  height: 300px;
   border: solid 1px #000;
 }
 
 /* NavBar */
-nav li {
+.navbar {
+  width: 80px;
+  transition: all 0.5s ease;
+}
+
+.navbar.active ~ main {
+  left: 270px;
+  max-width: calc(100% - 270px);
+}
+
+.navbar.active {
+  width: 250px;
+}
+
+.navbar ul li {
   white-space: nowrap;
 }
 
-nav img {
+.navbar.active ul {
+  opacity: 1;
+}
+
+.navbar img {
   max-height: 50px;
 }
 
-nav a {
+.navbar #btn {
+  position: absolute;
+  top: 40px;
+  left: 50%;
   color: beige;
-  text-decoration: none;
-  font-family: "Public Sans", sans-serif;
+  font-size: 18px;
+  line-height: 50px;
+  transform: translate(-50%);
+  cursor: pointer;
+}
+
+.navbar.active #btn {
+  left: 90%;
+}
+
+.navbar.active .logo {
+  opacity: 1;
 }
 /* NavBar End */
+
+main {
+  left: 100px;
+  transition: all 0.5s ease;
+  max-width: calc(100% - 80px);
+  min-height: 100vh
+}
