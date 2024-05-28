@@ -54,8 +54,8 @@ async function loadUserInfoBudget(username){
 
     // maps each budget instance as an income or expense
     projectedBudgets.map(budgetInfo => {
+        let transactionCategory = budgetInfo.category
         if(budgetInfo.type == "Income"){
-            // budgetInfo.category
             projectedIncomes.push(budgetInfo)
         }
         if(budgetInfo.type == "Expense"){
@@ -68,9 +68,10 @@ async function loadUserInfoBudget(username){
 
     let budgetHTML = projectedBudgets.map(budgetInfo => {
         return `
-        <div class="post">
+        <div class="post border">
             <p>Category: ${budgetInfo.category}</p>
             <p>Amount: ${budgetInfo.amount}</p>
+            <p>Description: ${budgetInfo.description}
         </div>`
     }).join("\n");
     
