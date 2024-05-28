@@ -15,7 +15,7 @@
     
   </head>
 
-  <body>
+  <body onload="init()">
     <nav class="navbar fixed top-0 left-0 flex flex-col justify-between h-full bg-green">
       <div class="container">
         <div class="top flex items-center">
@@ -83,25 +83,4 @@
       </footer>
     </main>
   </body>
-
-  <script>
-    let btn = document.querySelector('#btn');
-    let navbar = document.querySelector('.navbar');
-    btn.onclick = function() {
-      navbar.classList.toggle('active');
-      localStorage.setItem('navbarState', navbar.classList.contains('active') ? 'open' : 'closed');
-    };
-
-    window.onload = function() {
-      const navbarState = localStorage.getItem('navbarState');
-      if (navbarState === 'open') {
-        navbar.classList.add('active');
-      } else {
-        navbar.classList.remove('active');
-      }
-
-      loadIdentity();
-      netIncome();
-    };
-  </script>
 </html>
