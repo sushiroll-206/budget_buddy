@@ -1,7 +1,7 @@
 // budget app functions go here
 
-// Initialize for index.html
-async function initIndex(){
+// Initialize for budgetBuddy.html
+async function initBuddy(){
 
     await loadIdentity();
     await fetchUserCards(); 
