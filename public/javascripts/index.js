@@ -10,9 +10,31 @@ async function initBuddy(){
 
 // Initialize for the others because only index.html needs the user cards
 async function init() {
-  await loadIdentity();
-  console.log("Init for everything else");
-}
+  try {
+    await new Promise(resolve => {
+      console.log("Waiting for 'load' event");
+      let btn = document.querySelector('#btn');
+      let navbar = document.querySelector('.navbar');
+      btn.onclick = function() {
+        navbar.classList.toggle('active');
+        localStorage.setItem('navbarState', navbar.classList.contains('active') ? 'open' : 'closed');
+      };
+  
+      const navbarState = localStorage.getItem('navbarState');
+      if (navbarState === 'open') {
+        navbar.classList.add('active');
+      } else {
+        navbar.classList.remove('active');
+      };
+  
+      loadIdentity();
+      console.log("Identify loaded");
+      window.addEventListener('load', resolve);
+    });
+  } catch(err) {
+    console.log("Error: ", err)
+  }
+};
 
 
 // document.addEventListener('DOMContentLoaded', async () => {
