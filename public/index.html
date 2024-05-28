@@ -11,10 +11,10 @@
     <script src="javascripts/identity.js"></script>
     <script src="javascripts/index.js"></script>
     <script src="https://kit.fontawesome.com/5727d82724.js" crossorigin="anonymous"></script>
-    <script src="javascripts/netCalcs.js"></script>
+    
   </head>
 
-  <body onload="initIndex()">
+  <body>
     <nav class="navbar fixed top-0 left-0 flex flex-col justify-between h-full bg-green">
       <div class="container">
         <div class="top flex items-center">
@@ -55,9 +55,9 @@
         <section class="grid grid-rows-2 grid-flow-col gap-4 mr-8">
           <div class="grid-item">
             <p>Projected vs. Actual Net Income</p>
-            <button onclick="netIncome()">Get My Net Income</button>
             <div id="projectedIncome">Projected Income goes here</div>
             <div id="projectedExpense">Projected Expense goes here</div>
+            <div id="projectedNI">Calculated Net Income goes here</div>
           </div>
           <div class="grid-item">
             <p>Highest Expense Category</p>
@@ -97,6 +97,7 @@
       }
 
       loadIdentity();
+      netIncome();
     };
   </script>
 </html>

@@ -35,13 +35,13 @@ router.get('/projectedExpense', async (req, res) => {
     try {
         if (req.session.isAuthenticated) {
             let username = req.session.account.username;
-            let projectedExpense = await req.models.ProjectedBudget.find({username: username}).aggregate([{ $match : { type : "expense" } }]);
+            let projectedExpense = await req.models.ProjectedBudget.aggregate([{ $match : { $and: [ { username : username }, { type: "Expense" } ] } }]);
             console.log(projectedExpense)
             let allExpense = await Promise.all(
-              allExpense.map(async expense => {
+              projectedExpense.map(async expense => {
                 try {
-                  let {username, type, amount, description} = expense;
-                  return {username, type, amount, description};
+                  let {username, type, amount, description, category} = expense;
+                  return {username, type, amount, description, category};
                 }
                 catch(error) {
                   console.log("Error: ", error);
