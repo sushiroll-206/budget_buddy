@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/9807ffc3-7daa-4694-926c-e486bc162cd4/resourceGroups/budget-buddy-441_group-97ee/providers/Microsoft.Web/sites/budget-buddy-441",
+    "appService.deploySubpath": "."
+}

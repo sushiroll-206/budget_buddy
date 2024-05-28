@@ -95,14 +95,14 @@ router.post('/actual', async (req, res) => {
 // POST projected budget for user
 router.post('/projected', async (req, res) => {
   try {
-    console.log("This is the body " + req.body)
     if(req.session.isAuthenticated) {
       const newProjected = new req.models.ProjectedBudget({
         username: req.session.account.username,
-        type: req.body.type, 
+        type: req.body.type, // income or expense
+        category: req.body.category,  // income/expense category
         amount: req.body.amount,
         // post: req.body.postID,
-        description: req.body.description
+        description: req.body.description // description of income/expense
       });
       await newProjected.save();
 
