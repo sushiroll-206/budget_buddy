@@ -79,7 +79,8 @@ router.post('/actual', async (req, res) => {
         type: req.body.type, 
         amount: req.body.amount,
         // post: req.body.postID,
-        description: req.body.description
+        description: req.body.description,
+        created_date: new Date()
       });
       await newActual.save();
 
@@ -102,7 +103,8 @@ router.post('/projected', async (req, res) => {
         category: req.body.category,  // income/expense category
         amount: req.body.amount,
         // post: req.body.postID,
-        description: req.body.description // description of income/expense
+        description: req.body.description, // description of income/expense
+        created_date: new Date()
       });
       await newProjected.save();
 
