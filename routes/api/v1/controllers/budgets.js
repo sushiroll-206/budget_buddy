@@ -63,7 +63,8 @@ router.post('/', async (req, res) => {
             type: req.body.type, // income or expense
             category: req.body.category,  // income/expense category
             amount: req.body.amount,
-            description: req.body.description // description of income/expense
+            description: req.body.description, // description of income/expense
+            created_date: new Date()
         });
         await newProjected.save();
       }
@@ -73,7 +74,8 @@ router.post('/', async (req, res) => {
           type: req.body.type, 
           amount: req.body.amount,
           category: req.body.category,
-          description: req.body.description
+          description: req.body.description,
+          created_date: new Date()
         });
         await newActual.save();
       }
@@ -83,29 +85,6 @@ router.post('/', async (req, res) => {
   }
   catch(error) {
     console.log("error: ", err);
-    res.status(500).json({status: "error", error: error});
-  }
-});
-
-// POST projected budget for user
-router.post('/projected', async (req, res) => {
-  try {
-    if(req.session.isAuthenticated) {
-      const newProjected = new req.models.ProjectedBudget({
-        username: req.session.account.username,
-        type: req.body.type, // income or expense
-        category: req.body.category,  // income/expense category
-        amount: req.body.amount,
-        // post: req.body.postID,
-        description: req.body.description // description of income/expense
-      });
-      await newProjected.save();
-
-      res.json({status: "success"});
-    }
-  }
-  catch(error) {
-    console.log("error: ", error);
     res.status(500).json({status: "error", error: error});
   }
 });
