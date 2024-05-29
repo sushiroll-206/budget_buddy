@@ -10,8 +10,10 @@
     <script src="javascripts/utils.js"></script>
     <script src="javascripts/identity.js"></script>
     <script src="javascripts/index.js"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
     <script src="javascripts/myBudget.js"></script>
     <script src="https://kit.fontawesome.com/5727d82724.js" crossorigin="anonymous"></script>
+
   </head>
 
   <body onload="init()">
@@ -98,6 +100,7 @@
       <div id="userBudgetDisplayFrame">
         <h1 class="mt-6">Current Budget Overview</h1>
         <div id="userBudgetDisplay"></div>
+        <div id="chart"></div>
         <button onclick="loadUserBudget()">Refresh</button>
       </div>
       <footer class="mt-auto text-center">

@@ -45,7 +45,8 @@ const projectedBudgetSchema = new mongoose.Schema({
     amount: {type: Number, required: true},
     description: String,
     username: String,
-    post: { type: mongoose.Schema.Types.ObjectId, ref: 'Post' }
+    post: { type: mongoose.Schema.Types.ObjectId, ref: 'Post' },
+    created_date: Date
 });
 models.ProjectedBudget = mongoose.model('ProjectedBudget', projectedBudgetSchema);
 console.log("Projected Budget Schema Created");
@@ -56,7 +57,8 @@ const actualBudgetSchema = new mongoose.Schema({
     amount: {type: Number, required: true},
     description: String,
     username: String,
-    post: { type: mongoose.Schema.Types.ObjectId, ref: 'Post' }
+    post: { type: mongoose.Schema.Types.ObjectId, ref: 'Post' },
+    created_date: Date
 });
 models.ActualBudget = mongoose.model('ActualBudget', actualBudgetSchema);
 console.log("Actual Budget Schema Created");
