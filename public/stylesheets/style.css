@@ -89,3 +89,8 @@ main {
   max-width: calc(100% - 80px);
   min-height: 100vh
 }
+
+.projected-budget-summary,
+.actual-budget-summary {
+  width: 49%;
+}
