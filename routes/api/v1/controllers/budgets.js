@@ -63,7 +63,7 @@ router.post('/', async (req, res) => {
             type: req.body.type, // income or expense
             category: req.body.category,  // income/expense category
             amount: req.body.amount,
-            description: req.body.description, // description of income/expense
+            description: req.body.description,// description of income/expense
             created_date: new Date()
         });
         await newProjected.save();
@@ -88,16 +88,6 @@ router.post('/', async (req, res) => {
     res.status(500).json({status: "error", error: error});
   }
 });
-
-router.get('/projected', async (req, res) => {
-  try {
-    const { postId } = req.params;
-    const budgets = await ProjectedBudget.find({ postId });
-    res.json(budgets);
-  } catch (error) {
-    res.status(500).send('Server error');
-  }
-})
 
 export default router;
 
