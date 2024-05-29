@@ -39,20 +39,19 @@ router.get('/', async function(req, res) {
         if (username) {
             allPosts = await req.models.Post.find({username: username});
         }
-      let postData = await Promise.all(
-        allPosts.map(async post => {
-            try {
-                let {username, description, id, likes, created_date} = post;
-                return {username, description, username, id, likes, created_date};
-            }
-            catch(error) {
-                console.log("Error:", error);
-                return {description, error};
-            }
-        })
-        
-      );
-      res.send(postData);
+        let postData = await Promise.all(
+            allPosts.map(async post => {
+                try {
+                    let {username, description, id, likes, created_date} = post;
+                    return {username, description, username, id, likes, created_date};
+                }
+                catch(error) {
+                    console.log("Error:", error);
+                    return {description, error};
+                }
+            }) 
+        );
+        res.send(postData);
     } catch(error){
       console.log("Error:", error);
       res.status(500).json({"status": "error", "error": error});
@@ -93,12 +92,10 @@ router.post('/unlike', async(req, res) => {
             }
             await likedPost.save();
             res.json({status: "success"});
-        }
-        else {
+        } else {
             res.status(401).json({status: "error", error: "not logged in"});
         }
-    }
-    catch(err) {
+    } catch(err) {
         console.log("error: ", err);
         res.status(500).json({status: "error", error: err});
     }
@@ -115,12 +112,10 @@ router.delete("/", async(req, res) => {
             await req.models.Comment.deleteMany({post: postID});
             await req.models.Post.deleteOne({_id: postID});
             res.json({status: "success"});
-        }
-        else {
+        } else {
             res.status(401).json({status: "error", error: "not logged in"});
         }
-    }
-    catch(err) {
+    } catch(err) {
         console.log("error: ", err);
         res.status(500).json({status: "error", error: err});
     }

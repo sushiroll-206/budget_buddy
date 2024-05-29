@@ -50,11 +50,11 @@
       <article>
         <h1 class="mt-12">Budget with Buddies</h1>
         <section>
-          <div id="make_post_div" class="d-none">
+          <div id="make_post_div">
             <h2>Make a post:</h2>
-            <p>What do you want to talk to your Budget Buddies about?</p>
-            <input type="text" id="descriptionInput" class="border"/>
-            <button onclick="post()">Post</button> <span id="postStatus"></span>
+            <p class="mb-2">What do you want to talk to your Budget Buddies about?</p>
+            <input type="text" id="descriptionInput" class="border border-gray-300"/>
+            <button onclick="post()">Post</button><span id="postStatus"></span>
           </div>
         </section>
       </article>
@@ -66,25 +66,4 @@
       </footer>
     </main>
   </body>
-
-  <script>
-    let btn = document.querySelector('#btn');
-    let navbar = document.querySelector('.navbar');
-    btn.onclick = function() {
-      navbar.classList.toggle('active');
-      localStorage.setItem('navbarState', navbar.classList.contains('active') ? 'open' : 'closed');
-    };
-
-    window.onload = function() {
-      const navbarState = localStorage.getItem('navbarState');
-      if (navbarState === 'open') {
-        navbar.classList.add('active');
-      } else {
-        navbar.classList.remove('active');
-      }
-
-      loadIdentity();
-      initBuddy();
-    };
-  </script>
 </html>

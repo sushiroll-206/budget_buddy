@@ -51,29 +51,22 @@
     <main class="dashboard relative flex flex-col">
       <article>
         <h1 class="mt-12">Dashboard</h1>
-        <p class="my-2">Welcome to Your Budget Buddy!</p>
-        <h2>Your Stats</h2>
+        <p class="mb-6">Welcome to Your Budget Buddy!</p>
+        <h2 class="mb-3">Your Statistics</h2>
         <section class="grid grid-rows-2 grid-flow-col gap-4 mr-8">
           <div class="grid-item">
-            <p>Projected vs. Actual Net Income</p>
+            <h3 class="p-2"><strong>Projected vs. Actual Net Income</strong></h3>
+            <div id="projectedIncome" class="p-2">Projected Income goes here</div>
+            <div id="projectedExpense" class="p-2">Projected Expense goes here</div>
+            <div id="projectedNI" class="p-2">Calculated Net Income for Projected Budget goes here</div>
             <br>
-            <div id="projectedIncome">Projected Income goes here</div>
-            <div id="projectedExpense">Projected Expense goes here</div>
-            <div id="projectedNI">Calculated Net Income for Projected Budget goes here</div>
-            <br>
-            <div id="actualIncome">Actual Incomes goes here</div>
-            <div id="actualExpense">Actual Expense goes here</div>
-            <div id="actualNI">Calculated Net Income for Actual Budget goes here</div>
+            <div id="actualIncome" class="p-2">Actual Incomes goes here</div>
+            <div id="actualExpense" class="p-2">Actual Expense goes here</div>
+            <div id="actualNI" class="p-2">Calculated Net Income for Actual Budget goes here</div>
           </div>
           <div class="grid-item">
-            <p>Maybe another stat</p>
-          </div>
-          <div class="grid-item">
-            <p>Highest Expense Category</p>
-            <div id="highest">Hold off on the drinking maybe</div>
-          </div>
-          <div class="grid-item">
-            <p>Maybe another stat</p>
+            <h3 class="p-2"><strong>Highest Expense Category</strong></h3>
+            <div id="highest" class="p-2">Hold off on the drinking maybe</div>
           </div>
         </section>
       </article>

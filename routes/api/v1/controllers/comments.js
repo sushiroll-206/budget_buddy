@@ -6,8 +6,7 @@ router.get('/', async(req, res) => {
         let postID = req.query.postID;
         let postComments = await req.models.Comment.find({post: postID});
         res.json(postComments);
-    }
-    catch(err) {
+    } catch(err) {
         console.log("error: ", err);
         res.status(500).json({status: "error", error: err});
     }
@@ -27,8 +26,7 @@ router.post('/', async(req, res) => {
     
             res.json({status: "success"});
         }
-    }
-    catch(err) {
+    } catch(err) {
         console.log("error: ", err);
         res.status(500).json({status: "error", error: err});
     }
