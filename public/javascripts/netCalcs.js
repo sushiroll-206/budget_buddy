@@ -49,8 +49,7 @@ async function netIncome() {
         let totalNI = totalIncome - totalExpense;
         let nIHTML = `<p>This is your projected Net Income: $${totalNI}</p>`;
         projectedNI.innerHTML = nIHTML;
-    }
-    catch(error) {
+    } catch(error) {
         console.error('Error fetching users:', error);
     }
   
