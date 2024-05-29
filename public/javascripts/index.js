@@ -249,6 +249,7 @@ async function postComment(postID){
       method: "POST",
       body: {postID: postID, newComment: newComment}
   })
+  document.getElementById(`new-comment-${postID}`).innerHTML = ""
   
   refreshComments(postID);
 }
