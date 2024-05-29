@@ -110,8 +110,11 @@ async function loadUserInfoBudget(username) {
     });
 
     // initialize income and expense HTMLs
-    let incomeHTML = `<h3 class="mt-4"><strong>Incomes:</strong></h3>`;
-    let expenseHTML = `<h3 class="mt-4"><strong>Expenses:</strong></h3>`;
+    let projectedIncomeHTML = `<h3 class="mt-4"><strong>Incomes:</strong></h3>`;
+    let projectedExpenseHTML = `<h3 class="mt-4"><strong>Expenses:</strong></h3>`;
+
+    let actualIncomeHTML = `<h3 class="mt-4"><strong>Incomes:</strong></h3>`;
+    let actualExpenseHTML = `<h3 class="mt-4"><strong>Expenses:</strong></h3>`;
 
     // for each category in INCOME, create an html format to show transactions
     for(const category in projectedIncomes) {
@@ -125,7 +128,7 @@ async function loadUserInfoBudget(username) {
                 <p>Description: ${transactionInfo.description}</p>
             </div>`;
         }).join("\n");
-        incomeHTML += `<h3><strong>${category}</strong></h3><div class='mb-3'>${categoryHTML}</div>`
+        projectedIncomeHTML += `<h3><strong>${category}</strong></h3><div class='mb-3'>${categoryHTML}</div>`
     }
     // for each category in EXPENSE, create an html format to show transactions
     for(const category in projectedExpenses) {
@@ -139,19 +142,50 @@ async function loadUserInfoBudget(username) {
                 <p>Description: ${transactionInfo.description}</p>
             </div>`;
         }).join("\n");
-        expenseHTML += `<h3><strong>${category}</strong></h3><div class='mb-3'>${categoryHTML}</div>`
+        projectedExpenseHTML += `<h3><strong>${category}</strong></h3><div class='mb-3'>${categoryHTML}</div>`
+    }
+
+    ///////////// ACTUAL BUDGET STUFF 
+    // for each category in ACTUAL INCOME, create an html format to show transactions
+    for(const category in actualIncomes) {
+        let categoryTransactions = actualIncomes[category]
+        let categoryHTML = categoryTransactions.map(transactionInfo => {
+            const amountColorClass = transactionInfo.type === 'Expense' ? 'color: red' : 'color: green';
+            return `
+            <div class="card-info border">
+                <p>Category: ${transactionInfo.category}</p>
+                <p style="${amountColorClass}">Amount: ${transactionInfo.amount}</p>
+                <p>Description: ${transactionInfo.description}</p>
+            </div>`;
+        }).join("\n");
+        actualIncomeHTML += `<h3><strong>${category}</strong></h3><div class='mb-3'>${categoryHTML}</div>`
+    }
+    // for each category in ACTUAL EXPENSE, create an html format to show transactions
+    for(const category in actualExpenses) {
+        let categoryTransactions = actualExpenses[category]
+        let categoryHTML = categoryTransactions.map(transactionInfo => {
+            const amountColorClass = transactionInfo.type === 'Expense' ? 'color: red' : 'color: green';
+            return `
+            <div class="card-info border">
+                <p>Category: ${transactionInfo.category}</p>
+                <p style="${amountColorClass}">Amount: ${transactionInfo.amount}</p>
+                <p>Description: ${transactionInfo.description}</p>
+            </div>`;
+        }).join("\n");
+        actualExpenseHTML += `<h3><strong>${category}</strong></h3><div class='mb-3'>${categoryHTML}</div>`
     }
 
     let budgetHTML = `
         <section class="flex justify-evenly">
             <div class="projected-budget-summary">
                 <h2>Projected Budget</h2>
-                ${incomeHTML}
-                ${expenseHTML}
+                ${projectedIncomeHTML}
+                ${projectedExpenseHTML}
             </div>
             <div class="actual-budget-summary">
                 <h2>Actual Budget</h2>
-                // input actual budget here
+                ${actualIncomeHTML}
+                ${actualExpenseHTML}
             </div>
         </section>
     `;
