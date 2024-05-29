@@ -617,8 +617,8 @@ video {
   margin-bottom: 0.5rem;
 }
 
-.mb-6 {
-  margin-bottom: 1.5rem;
+.mb-3 {
+  margin-bottom: 0.75rem;
 }
 
 .mr-8 {
@@ -633,20 +633,16 @@ video {
   margin-top: 0.5rem;
 }
 
+.mt-4 {
+  margin-top: 1rem;
+}
+
 .mt-6 {
   margin-top: 1.5rem;
 }
 
 .mt-auto {
   margin-top: auto;
-}
-
-.mb-3 {
-  margin-bottom: 0.75rem;
-}
-
-.mt-4 {
-  margin-top: 1rem;
 }
 
 .block {
@@ -874,7 +870,9 @@ h3 {
   white-space: nowrap;
 }
 
-.navbar.active ul {
+.navbar.active ul,
+.navbar.active .logo,
+.navbar.active .user {
   opacity: 1;
 }
 
@@ -895,10 +893,6 @@ h3 {
 
 .navbar.active #btn {
   left: 90%;
-}
-
-.navbar.active .logo {
-  opacity: 1;
 }
 
 /* NavBar End */
