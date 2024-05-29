@@ -190,20 +190,20 @@ async function saveExpenseBudgetInfo(){
 }
 
 async function likePost(postID){
-  await fetchJSON(`api/${apiVersion}/posts/like`, {
+  await fetchJSON(`api/${apiVersion}/usersCards/like`, {
       method: "POST",
       body: {postID: postID}
   })
-  loadPosts();
+  fetchUserCards();
 }
 
 
 async function unlikePost(postID){
-  await fetchJSON(`api/${apiVersion}/posts/unlike`, {
+  await fetchJSON(`api/${apiVersion}/usersCards/unlike`, {
       method: "POST",
       body: {postID: postID}
   })
-  loadPosts();
+  fetchUserCards();
 }
 
 
@@ -212,7 +212,7 @@ function getCommentHTML(commentsJSON){
       return `
       <div class="individual-comment-box">
           <div>${escapeHTML(commentInfo.comment)}</div>
-          <div> - <a href="/userInfo.html?user=${encodeURIComponent(commentInfo.username)}">${escapeHTML(commentInfo.username)}</a>, ${escapeHTML(commentInfo.created_date)}</div>
+          <div> - <a href="/myBudget.html?user=${encodeURIComponent(commentInfo.username)}">${escapeHTML(commentInfo.username)}</a>, ${escapeHTML(commentInfo.created_date)}</div>
       </div>`
   }).join(" ");
 }
