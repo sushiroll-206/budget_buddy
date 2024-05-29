@@ -41,12 +41,7 @@ async function loadUserInfoBudget(username) {
     actualBudgets = budgetJson.actualBudgets;
     projectedBudgets = budgetJson.projectedBudgets;
     projectedBudgets.sort((a, b) => new Date(a.created_date) - new Date(b.created_date));
-
-
-    // radio buttons
-    let budgetType = document.getElementById("projected").checked;
-    console.log(budgetType)
-
+    
     // Divide budget into projected incomes and expenses
     let projectedIncomes = []
     let projectedExpenses = []

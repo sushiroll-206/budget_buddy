@@ -135,20 +135,28 @@ async function saveExpenseBudgetInfo(){
   let expenseDescription = document.getElementById('expenseDescription').value
   // let userJSON = await fetchJSON(`api/${apiVersion}/users/myIdentity`)
   // let userName = userJSON.userInfo.name
+  let budgetType = document.getElementById('projected').checked;
 
- let responseJson = await fetchJSON(`api/${apiVersion}/budgets/projected`, {
-    method: "POST",
-    body: {type: "Expense",
-          category: expenseName,
-          amount: expenseAmount,
-          description: expenseDescription
-          }
-})
+  try {
+    await fetchJSON(`api/${apiVersion}/budgets`, {
+      method: "POST",
+      body: {type: "Expense",
+              category: expenseName,
+              amount: expenseAmount,
+              description: expenseDescription,
+              budgetType: budgetType
+            }
+    });
+  }
+  catch(error) {
+    console.log("this is the error: " + error);
+  }
 
-document.getElementById(`expenseName`).value = "";
-document.getElementById(`expenseAmount`).value = "";
-document.getElementById(`expenseDescription`).value = "";
-loadUserBudget()
+ 
+  document.getElementById(`expenseName`).value = "";
+  document.getElementById(`expenseAmount`).value = "";
+  document.getElementById(`expenseDescription`).value = "";
+  loadUserBudget()
 }
 
 
