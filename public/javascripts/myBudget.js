@@ -66,36 +66,40 @@ async function loadUserInfoBudget(username) {
         }
     });
 
-    // what needs to be done -- might need to update the projectedBudgets.map
-    let incomeHTML = projectedIncomes.forEach(transactionInfo => {
-        console.log(transactionInfo)
-        let incomeTransactionsHTML = transactionInfo.map(data => {
+    // initialize income and expense HTMLs
+    let incomeHTML = `<h2 class="mt-4"><strong>Incomes:</strong><h2>\n`
+    let expenseHTML = `<h2 class="mt-4"><strong>Expenses:</strong><h2>\n`
+
+    // for each category in INCOME, create an html format to show transactions
+    for(const category in projectedIncomes){
+        let categoryTransactions = projectedIncomes[category]
+        let categoryHTML = categoryTransactions.map(transactionInfo => {
+            const amountColorClass = transactionInfo.type === 'Expense' ? 'color: red' : 'color: green';
             return `
-            <div class="post border">
-                <p>Amount: ${data.amount}</p>
-                <p>Description: ${data.description}
-            </div>
-            `
-        })
-        return incomeTransactionsHTML
+            <div class="border">
+                <p>Category: ${transactionInfo.category}</p>
+                <p style="${amountColorClass}">Amount: ${transactionInfo.amount}</p>
+                <p>Description: ${transactionInfo.description}</p>
+            </div>`;
+        }).join("\n");
+        incomeHTML = incomeHTML + `<h3><strong>${category}</strong></h3>\n <div class='mb-3'>${categoryHTML}</div>\n`
+    }
+    // for each category in EXPENSE, create an html format to show transactions
+    for(const category in projectedExpenses){
+        let categoryTransactions = projectedExpenses[category]
+        let categoryHTML = categoryTransactions.map(transactionInfo => {
+            const amountColorClass = transactionInfo.type === 'Expense' ? 'color: red' : 'color: green';
+            return `
+            <div class="border">
+                <p>Category: ${transactionInfo.category}</p>
+                <p style="${amountColorClass}">Amount: ${transactionInfo.amount}</p>
+                <p>Description: ${transactionInfo.description}</p>
+            </div>`;
+        }).join("\n");
+        expenseHTML = expenseHTML + `<h3><strong>${category}</strong></h3>\n <div class='mb-3'>${categoryHTML}</div>\n`
+    }
 
-        // return `
-        // <div class="post border">
-        //     <p>Amount: ${budgetInfo.amount}</p>
-        //     <p>Description: ${budgetInfo.description}
-        // </div>
-        // `
-    });
-
-    let budgetHTML = projectedBudgets.map(budgetInfo => {
-        const amountColorClass = budgetInfo.type === 'Expense' ? 'red-text' : 'green-text';
-        return `
-        <div class="post border">
-            <p>Category: ${budgetInfo.category}</p>
-            <p class="${amountColorClass}">Amount: ${budgetInfo.amount}</p>
-            <p>Description: ${budgetInfo.description}</p>
-        </div>`;
-    }).join("\n");
+    let budgetHTML = incomeHTML + expenseHTML
 
     const margin = { top: 20, right: 20, bottom: 30, left: 50 },
     width = 960 - margin.left - margin.right,
