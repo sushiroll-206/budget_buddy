@@ -27,7 +27,7 @@ async function init() {
       };
   
       loadIdentity();
-      netIcome();
+      netIncome();
       console.log("Identify loaded");
       window.addEventListener('load', resolve);
     });
@@ -92,14 +92,18 @@ async function saveIncomeBudgetInfo(){
   let incomeDescription = document.getElementById('incomeDescription').value
   // let userJSON = await fetchJSON(`api/${apiVersion}/users/myIdentity`)
   // let userName = userJSON.user.name
+  let budgetType = document.getElementById('projected').checked;
+  console.log(budgetType);
 
   try {
-    await fetchJSON(`api/${apiVersion}/budgets/projected`, {
+
+    await fetchJSON(`api/${apiVersion}/budgets`, {
       method: "POST",
       body: {type: "Income",
             category: incomeTitle,
             amount: incomeAmount,
-            description: incomeDescription
+            description: incomeDescription,
+            budgetType: budgetType
             }
     });
   }
