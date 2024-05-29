@@ -27,7 +27,9 @@ async function init() {
       };
   
       loadIdentity();
-      netIncome();
+      proNetIncome();
+      actNetIncome();
+      highestExpense();
       console.log("Identify loaded");
       window.addEventListener('load', resolve);
     });
