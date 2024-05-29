@@ -103,7 +103,8 @@ async function saveIncomeBudgetInfo(){
             category: incomeTitle,
             amount: incomeAmount,
             description: incomeDescription,
-            budgetType: budgetType
+            budgetType: budgetType,
+            created_date: new Date()
             }
     });
   }
@@ -144,7 +145,8 @@ async function saveExpenseBudgetInfo(){
               category: expenseName,
               amount: expenseAmount,
               description: expenseDescription,
-              budgetType: budgetType
+              budgetType: budgetType,
+              created_date: new Date()
             }
     });
   }

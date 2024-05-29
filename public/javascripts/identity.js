@@ -3,7 +3,6 @@ let myIdentity = undefined;
 
 async function loadIdentity(){
     let identity_div = document.getElementById("identity_div");
-    console.log("This is the identity_div" + identity_div);
 
     let myBudget_div = document.getElementById("myBudget_div");
 
