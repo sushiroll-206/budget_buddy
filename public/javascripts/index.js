@@ -2,9 +2,8 @@
 
 // Initialize for budgetBuddy.html
 async function initBuddy(){
-
     await loadIdentity();
-    await fetchUserCards(); 
+    fetchUserCards(); 
 }
 
 // Initialize for the others because only budgetBuddy.html needs the user cards
@@ -45,21 +44,20 @@ async function init() {
 
 async function fetchUserCards() {
     try {
-        console.log("Fetching usersCards")
+        document.getElementById("userCardsDisplay").innerText = "Loading...";
         const response = await fetch(`api/${apiVersion}/usersCards`);
+
         const userCards = await response.json();
-    
-        const userCardsDisplay = document.getElementById('userCardsDisplay');
-        userCardsDisplay.innerHTML = ''; // Clear any existing content
-    
+
+        const userCardsDisplay = document.getElementById('userCardsDisplay');    
         if (userCards.length === 0) {
             userCardsDisplay.innerHTML = '<p>No users found.</p>';
             return;
         }
-        let userCardHTML = userCards.forEach(card => {
+        let userCardHTML = userCards.map(card => {
           return `
             <div class="user-card', 'p-4', 'm-2', 'bg-gray-100', 'rounded">
-                ${escapeHTML(card.description)}
+                <p>${escapeHTML(card.description)}</p>
                 <div><a href="/myBudget.html?user=${encodeURIComponent(card.username)}">${escapeHTML(card.username)}</a>, ${escapeHTML(card.created_date)}</div>
                 <div class="post-interactions">
                     <div>
@@ -84,7 +82,9 @@ async function fetchUserCards() {
                 </div>
             </div>`
         }).join("\n");
-        userCardsDisplay.innerHTML(userCardHTML);
+        
+        console.log(userCardHTML)
+        userCardsDisplay.innerHTML = userCardHTML;
     } catch (error) {
         console.error('Error fetching users:', error);
         const userCardsDisplay = document.getElementById('userCardsDisplay');
