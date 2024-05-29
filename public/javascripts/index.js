@@ -47,43 +47,69 @@ async function fetchUserCards() {
     try {
         console.log("Fetching usersCards")
         const response = await fetch(`api/${apiVersion}/usersCards`);
-        console.log(response)
-        const users = await response.json();
+        const userCards = await response.json();
     
         const userCardsDisplay = document.getElementById('userCardsDisplay');
         userCardsDisplay.innerHTML = ''; // Clear any existing content
     
-        if (users.length === 0) {
+        if (userCards.length === 0) {
             userCardsDisplay.innerHTML = '<p>No users found.</p>';
             return;
-        } 
-        users.forEach(user => {
-          const userCard = document.createElement('div');
-          userCard.classList.add('user-card', 'p-4', 'm-2', 'bg-gray-100', 'rounded');
-
-          const userName = document.createElement('h3');
-          userName.textContent = user.name;
-  
-          const userEmail = document.createElement('p');
-          userEmail.textContent = user.email;
-  
-          const viewBudgetButton = document.createElement('a');
-          viewBudgetButton.href = `/userBudgets.html?userId=${user._id}`;
-          viewBudgetButton.textContent = 'View Budgets';
-          viewBudgetButton.classList.add('btn', 'btn-primary', 'mt-2');
-  
-          userCard.appendChild(userName);
-          userCard.appendChild(userEmail);
-          userCard.appendChild(viewBudgetButton);
-  
-          userCardsDisplay.appendChild(userCard);
-    });
+        }
+        let userCardHTML = userCards.forEach(card => {
+          return `
+            <div class="user-card', 'p-4', 'm-2', 'bg-gray-100', 'rounded">
+                ${escapeHTML(card.description)}
+                <div><a href="/myBudget.html?user=${encodeURIComponent(card.username)}">${escapeHTML(card.username)}</a>, ${escapeHTML(card.created_date)}</div>
+                <div class="post-interactions">
+                    <div>
+                        <span title="${card.likes? escapeHTML(card.likes.join(", ")) : ""}"> ${card.likes ? `${card.likes.length}` : 0} likes </span> &nbsp; &nbsp; 
+                        <span class="heart-button-span ${myIdentity? "": "d-none"}">
+                            ${card.likes && card.likes.includes(myIdentity) ? 
+                                `<button class="heart_button" onclick='unlikePost("${card.id}")'>&#x2665;</button>` : 
+                                `<button class="heart_button" onclick='likePost("${card.id}")'>&#x2661;</button>`} 
+                        </span>
+                    </div>
+                    <br>
+                    <button onclick='toggleComments("${card.id}")'>View/Hide comments</button>
+                    <div id='comments-box-${card.id}' class="comments-box d-none">
+                        <button onclick='refreshComments("${card.id}")')>refresh comments</button>
+                        <div id='comments-${card.id}'></div>
+                        <div class="new-comment-box ${myIdentity? "": "d-none"}">
+                            New Comment:
+                            <textarea type="textbox" id="new-comment-${card.id}"></textarea>
+                            <button onclick='postComment("${card.id}")'>Post Comment</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`
+        }).join("\n");
+        userCardsDisplay.innerHTML(userCardHTML);
     } catch (error) {
         console.error('Error fetching users:', error);
         const userCardsDisplay = document.getElementById('userCardsDisplay');
         userCardsDisplay.innerHTML = '<p>Failed to load user cards.</p>';
     }
+}
+
+async function post(){
+  document.getElementById("postStatus").innerHTML = "sending data..."
+  let description = document.getElementById("descriptionInput").value;
+
+  try{
+      await fetchJSON(`api/${apiVersion}/usersCards`, {
+          method: "POST",
+          body: {description: description}
+      });
+  }catch(error){
+      document.getElementById("postStatus").innerText = "Error"
+      throw(error)
   }
+  document.getElementById("descriptionInput").value = "";
+  document.getElementById("postStatus").innerHTML = "successfully uploaded"
+  fetchUserCards();
+  
+}
 
 // takes inputted income budget info and posts it to the /budgets post router
 async function saveIncomeBudgetInfo(){
@@ -161,6 +187,70 @@ async function saveExpenseBudgetInfo(){
   document.getElementById(`expenseAmount`).value = "";
   document.getElementById(`expenseDescription`).value = "";
   loadUserBudget()
+}
+
+async function likePost(postID){
+  await fetchJSON(`api/${apiVersion}/posts/like`, {
+      method: "POST",
+      body: {postID: postID}
+  })
+  loadPosts();
+}
+
+
+async function unlikePost(postID){
+  await fetchJSON(`api/${apiVersion}/posts/unlike`, {
+      method: "POST",
+      body: {postID: postID}
+  })
+  loadPosts();
+}
+
+
+function getCommentHTML(commentsJSON){
+  return commentsJSON.map(commentInfo => {
+      return `
+      <div class="individual-comment-box">
+          <div>${escapeHTML(commentInfo.comment)}</div>
+          <div> - <a href="/userInfo.html?user=${encodeURIComponent(commentInfo.username)}">${escapeHTML(commentInfo.username)}</a>, ${escapeHTML(commentInfo.created_date)}</div>
+      </div>`
+  }).join(" ");
+}
+
+async function toggleComments(postID){
+  let element = document.getElementById(`comments-box-${postID}`);
+  if(!element.classList.contains("d-none")){
+      element.classList.add("d-none");
+  }else{
+      element.classList.remove("d-none");
+      let commentsElement = document.getElementById(`comments-${postID}`);
+      if(commentsElement.innerHTML == ""){ // load comments if not yet loaded
+          commentsElement.innerHTML = "loading..."
+
+          let commentsJSON = await fetchJSON(`api/${apiVersion}/comments?postID=${postID}`)
+          commentsElement.innerHTML = getCommentHTML(commentsJSON);          
+      }
+  }
+  
+}
+
+async function refreshComments(postID){
+  let commentsElement = document.getElementById(`comments-${postID}`);
+  commentsElement.innerHTML = "loading..."
+
+  let commentsJSON = await fetchJSON(`api/${apiVersion}/comments?postID=${postID}`)
+  commentsElement.innerHTML = getCommentHTML(commentsJSON);
+}
+
+async function postComment(postID){
+  let newComment = document.getElementById(`new-comment-${postID}`).value;
+
+  let responseJson = await fetchJSON(`api/${apiVersion}/comments`, {
+      method: "POST",
+      body: {postID: postID, newComment: newComment}
+  })
+  
+  refreshComments(postID);
 }
 
 

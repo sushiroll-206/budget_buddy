@@ -8,7 +8,6 @@ router.post('/', async(req, res) => {
     try {
         if(req.session.isAuthenticated) {
             const newPost = new req.models.Post({
-                userImage: String,
                 username: req.session.account.username,
                 description: req.body.description,
                 likes: req.body.likes,
@@ -44,8 +43,7 @@ router.get('/', async function(req, res) {
         allPosts.map(async post => {
             try {
                 let {username, description, id, likes, created_date} = post;
-                let htmlPreview = await getURLPreview(url);
-                return {description, username, id, likes, created_date};
+                return {username, description, username, id, likes, created_date};
             }
             catch(error) {
                 console.log("Error:", error);

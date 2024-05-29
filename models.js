@@ -19,7 +19,6 @@ console.log("User Schema Created");
 
 // Posts Table (Likes)
 const postSchema = new mongoose.Schema({
-    userImage: String,
     description: String,
     username: String,
     likes: [String],
