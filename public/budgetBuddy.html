@@ -13,7 +13,7 @@
     <script src="https://kit.fontawesome.com/5727d82724.js" crossorigin="anonymous"></script>
   </head>
 
-  <body onload="init()">
+  <body onload="initBuddy()">
     <nav class="navbar fixed top-0 left-0 flex flex-col justify-between h-full bg-green">
       <div class="container">
         <div class="top flex items-center">
@@ -50,9 +50,13 @@
       <article>
         <h1 class="mt-12">Budget with Buddies</h1>
         <section>
-
+          <div id="make_post_div" class="d-none">
+            <h2>Make a post:</h2>
+            <p>What do you want to talk to your Budget Buddies about?</p>
+            <input type="text" id="descriptionInput"/>
+            <button onclick="post()">Post</button> <span id="postStatus"></span>
+          </div>
         </section>
-        <p>websockets? i dunno</p>
       </article>
 
       <!-- where we'll put results from the server for now?  -->
