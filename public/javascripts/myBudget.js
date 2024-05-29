@@ -126,7 +126,8 @@ async function loadUserInfoBudget(username) {
     // Ensure we have data for each day within the time period
     const startDate = d3.min(projectedBudgets, d => parseTime(d.created_date));
     const endDate = d3.max(projectedBudgets, d => parseTime(d.created_date));
-    const timeRange = d3.timeDay.range(new Date(startDate.getTime() - (24 * 60 * 60 * 1000)), new Date(endDate.getTime() + 24 * 60 * 60 * 1000));
+    const timeRange = d3.timeDay.range(new Date(startDate.getTime() - (48 * 60 * 60 * 1000)), new Date(endDate.getTime() + 24 * 60 * 60 * 1000));
+    console.log(startDate, endDate, timeRange)
     timeRange.forEach(day => {
         const dayString = day.toDateString();
         if (!(dayString in aggregatedData)) {
@@ -147,7 +148,6 @@ async function loadUserInfoBudget(username) {
             cumulativeAmount: cumulativeAmount
         });
     });
-
 
     const x = d3.scaleTime()
         .domain(d3.extent(aggregatedArray, d => d.date))
