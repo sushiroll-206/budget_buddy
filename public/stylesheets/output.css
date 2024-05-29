@@ -669,6 +669,10 @@ video {
   height: 100%;
 }
 
+.w-5\/12 {
+  width: 41.666667%;
+}
+
 .w-full {
   width: 100%;
 }
@@ -910,6 +914,11 @@ main {
   transition: all 0.5s ease;
   max-width: calc(100% - 80px);
   min-height: 100vh
+}
+
+.projected-budget-summary,
+.actual-budget-summary {
+  width: 49%;
 }
 
 .hover\:bg-beige:hover {

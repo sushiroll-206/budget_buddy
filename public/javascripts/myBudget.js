@@ -193,7 +193,7 @@ async function loadUserInfoBudget(username) {
 
     // chart
     const margin = { top: 20, right: 20, bottom: 30, left: 50 },
-    width = 700 - margin.left - margin.right,
+    width = 800 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
 
