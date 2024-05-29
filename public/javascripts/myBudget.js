@@ -1,134 +1,165 @@
 async function init() {
-    await loadIdentity();
-    loadUserBudget();
-}
+    try {
+      await new Promise(resolve => {
+        console.log("Waiting for 'load' event");
+        let btn = document.querySelector('#btn');
+        let navbar = document.querySelector('.navbar');
+        btn.onclick = function() {
+          navbar.classList.toggle('active');
+          localStorage.setItem('navbarState', navbar.classList.contains('active') ? 'open' : 'closed');
+        };
+    
+        const navbarState = localStorage.getItem('navbarState');
+        if (navbarState === 'open') {
+          navbar.classList.add('active');
+        } else {
+          navbar.classList.remove('active');
+        };
+    
+        loadIdentity();
+        loadUserBudget();
+        console.log("Identify loaded");
+        console.log("User budget loaded");
+        window.addEventListener('load', resolve);
+      });
+    } catch(err) {
+      console.log("Error: ", err)
+    }
+  };
 
 async function loadUserBudget() {
     const urlParams = new URLSearchParams(window.location.search);
     const username = urlParams.get('user');
-    if (!username) {
-        document.getElementById("username-span").innerText = `Please Log In`;
-        console.error('No username found in url');
-    }
+    const username_span = document.getElementById("username-span");
+    const userBudgetDisplay = document.getElementById("userBudgetDisplay");
 
-    if (username == myIdentity) {
-        document.getElementById("username-span").innerText = `You (${username})`;
-        document.getElementById("userBudgetDisplay").classList.remove("d-none");
+    if (!username) {
+        username_span.innerText = `Please Log In`;
+        console.error('No username found in url');
+        userBudgetDisplay.classList.add("hidden");
+    } else if (username == myIdentity) {
+        username_span.innerText = `You (${username})`;
+        userBudgetDisplay.classList.remove("hidden");
     } else {
-        document.getElementById("username-span").innerText = username;
-        document.getElementById("userBudgetDisplay").classList.add("d-none");
+        username_span.innerText = username;
     }
     
     //TODO: do an ajax call to load whatever info you want about the user from the user table
     try {
         const response = await fetch(`api/${apiVersion}/myBudget?username=${encodeURIComponent(username)}`);
         const userInfos = await response.json();
-        if (response.ok) {
-            
-        } else {
+        if (!response.ok) {
             console.error('Error loading user info:', userInfos.error);
-        }
+        };
     } catch (error) {
         console.error('Error loading user info:', error);
     }
-    
-    loadUserInfoBudget(username)
+    loadUserInfoBudget(username);
 }
 
 async function loadUserInfoBudget(username) {
     document.getElementById("userBudgetDisplay").innerText = "Loading...";
     let budgetJson = await fetchJSON(`api/${apiVersion}/myBudget?username=${encodeURIComponent(username)}`);
-    actualBudgets = budgetJson.actualBudgets;
-    projectedBudgets = budgetJson.projectedBudgets;
+    let actualBudgets = budgetJson.actualBudgets;
+    let projectedBudgets = budgetJson.projectedBudgets;
     actualBudgets.sort((a, b) => new Date(a.created_date) - new Date(b.created_date));
     projectedBudgets.sort((a, b) => new Date(a.created_date) - new Date(b.created_date));
 
-    
     // Divide budget into projected incomes and expenses
-    let projectedIncomes = []
-    let projectedExpenses = []
+    let projectedIncomes = [];
+    let projectedExpenses = [];
 
-    let actualIncomes = []
-    let actualExpenses = []
-
-    
+    let actualIncomes = [];
+    let actualExpenses = [];
 
     // maps each budget instance as an income or expense -- under their respective category
     projectedBudgets.map(budgetInfo => {
-        let transactionCategory = budgetInfo.category
+        let transactionCategory = budgetInfo.category;
         if (budgetInfo.type == "Income") {
             if (transactionCategory in projectedIncomes) {
-                projectedIncomes[transactionCategory].push(budgetInfo)
+                projectedIncomes[transactionCategory].push(budgetInfo);
             } else {
-                projectedIncomes[transactionCategory] = [budgetInfo]
+                projectedIncomes[transactionCategory] = [budgetInfo];
             }
         }
         if (budgetInfo.type == "Expense") {
             if (transactionCategory in projectedExpenses) {
-                projectedExpenses[transactionCategory].push(budgetInfo)
-                // projectedExpenses.push({[transactionCategory]: budgetInfo})
+                projectedExpenses[transactionCategory].push(budgetInfo);
             } else {
-                projectedExpenses[transactionCategory] = [budgetInfo]
+                projectedExpenses[transactionCategory] = [budgetInfo];
             }
         }
     });
 
     actualBudgets.map(budgetInfo => {
-        let transactionCategory = budgetInfo.category
+        let transactionCategory = budgetInfo.category;
         if (budgetInfo.type == "Income") {
             if (transactionCategory in actualIncomes) {
-                actualIncomes[transactionCategory].push(budgetInfo)
+                actualIncomes[transactionCategory].push(budgetInfo);
             } else {
-                actualIncomes[transactionCategory] = [budgetInfo]
+                actualIncomes[transactionCategory] = [budgetInfo];
             }
         }
         if (budgetInfo.type == "Expense") {
             if (transactionCategory in actualExpenses) {
-                actualExpenses[transactionCategory].push(budgetInfo)
-                // projectedExpenses.push({[transactionCategory]: budgetInfo})
+                actualExpenses[transactionCategory].push(budgetInfo);
             } else {
-                actualExpenses[transactionCategory] = [budgetInfo]
+                actualExpenses[transactionCategory] = [budgetInfo];
             }
         }
     });
 
     // initialize income and expense HTMLs
-    let incomeHTML = `<h2 class="mt-4"><strong>Incomes:</strong><h2>\n`
-    let expenseHTML = `<h2 class="mt-4"><strong>Expenses:</strong><h2>\n`
+    let incomeHTML = `<h3 class="mt-4"><strong>Incomes:</strong></h3>`;
+    let expenseHTML = `<h3 class="mt-4"><strong>Expenses:</strong></h3>`;
 
     // for each category in INCOME, create an html format to show transactions
-    for(const category in projectedIncomes){
+    for(const category in projectedIncomes) {
         let categoryTransactions = projectedIncomes[category]
         let categoryHTML = categoryTransactions.map(transactionInfo => {
             const amountColorClass = transactionInfo.type === 'Expense' ? 'color: red' : 'color: green';
             return `
-            <div class="border">
+            <div class="card-info border">
                 <p>Category: ${transactionInfo.category}</p>
                 <p style="${amountColorClass}">Amount: ${transactionInfo.amount}</p>
                 <p>Description: ${transactionInfo.description}</p>
             </div>`;
         }).join("\n");
-        incomeHTML = incomeHTML + `<h3><strong>${category}</strong></h3>\n <div class='mb-3'>${categoryHTML}</div>\n`
+        incomeHTML += `<h3><strong>${category}</strong></h3><div class='mb-3'>${categoryHTML}</div>`
     }
     // for each category in EXPENSE, create an html format to show transactions
-    for(const category in projectedExpenses){
+    for(const category in projectedExpenses) {
         let categoryTransactions = projectedExpenses[category]
         let categoryHTML = categoryTransactions.map(transactionInfo => {
             const amountColorClass = transactionInfo.type === 'Expense' ? 'color: red' : 'color: green';
             return `
-            <div class="border">
+            <div class="card-info border">
                 <p>Category: ${transactionInfo.category}</p>
                 <p style="${amountColorClass}">Amount: ${transactionInfo.amount}</p>
                 <p>Description: ${transactionInfo.description}</p>
             </div>`;
         }).join("\n");
-        expenseHTML = expenseHTML + `<h3><strong>${category}</strong></h3>\n <div class='mb-3'>${categoryHTML}</div>\n`
+        expenseHTML += `<h3><strong>${category}</strong></h3><div class='mb-3'>${categoryHTML}</div>`
     }
 
-    let budgetHTML = incomeHTML + expenseHTML
+    let budgetHTML = `
+        <section class="flex justify-evenly">
+            <div class="projected-budget-summary">
+                <h2>Projected Budget</h2>
+                ${incomeHTML}
+                ${expenseHTML}
+            </div>
+            <div class="actual-budget-summary">
+                <h2>Actual Budget</h2>
+                // input actual budget here
+            </div>
+        </section>
+    `;
+    document.getElementById("userBudgetDisplay").innerHTML = budgetHTML;
 
+    // chart
     const margin = { top: 20, right: 20, bottom: 30, left: 50 },
-    width = 960 - margin.left - margin.right,
+    width = 700 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
 
@@ -236,6 +267,4 @@ async function loadUserInfoBudget(username) {
         .attr("text-anchor", "end")
         .attr("fill", "red")
         .text(`Projected Budget: ${totalProjectedBudget}`);
-
-    document.getElementById("userBudgetDisplay").innerHTML = budgetHTML;
 }
