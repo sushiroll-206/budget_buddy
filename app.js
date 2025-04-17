@@ -14,7 +14,7 @@ const authConfig = {
     auth: {
    	clientId: "7f5aacfa-a950-4748-9120-94ac5d7c7149",
     	authority: "https://login.microsoftonline.com/f6b6dd5b-f02f-441a-99a0-162ac5060bd2",
-    	clientSecret: "gxL8Q~ynHSo~WAfkLLoW2XpOO2b6ueg-CpqBidyD",
+    	clientSecret: "Lwq8Q~z4E.ShFQd1qjcrTXU.vltlt8CHpYekBavN",
         // redirectUri: "https://budget-buddy.tjwong22.me/redirect" // for deployed website
     	redirectUri: "/redirect" // for localhost MAKE SURE TO SWAP OUT
     },
