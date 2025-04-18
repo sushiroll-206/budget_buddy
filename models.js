@@ -4,7 +4,7 @@ let models = {};
 
 // Connect to MongoDB 
 console.log("Connecting to MongoDB");
-await mongoose.connect("mongodb+srv://sohsht:password!@atlascluster.emrsee9.mongodb.net/budget_buddy");
+await mongoose.connect("mongodb+srv://tjwong22:info441-section-cluster-tjwong22@info441-section-cluster.snlulej.mongodb.net/budget_buddy");
 console.log("Successfully connected to MongoDB");
 
 // User Table
