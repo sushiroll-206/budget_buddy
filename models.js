@@ -1,10 +1,14 @@
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config();
 
 let models = {};
 
 // Connect to MongoDB 
 console.log("Connecting to MongoDB");
-await mongoose.connect("mongodb+srv://tjwong22:info441-section-cluster-tjwong22@info441-section-cluster.snlulej.mongodb.net/budget_buddy");
+await mongoose.connect(process.env.MONGODB_URI);
 console.log("Successfully connected to MongoDB");
 
 // User Table
@@ -12,7 +16,10 @@ const userSchema = new mongoose.Schema({
     username: String,
     firstName: String,
     lastName: String,
-    email: String
+    email: String,
+    password: String, // For email/password authentication
+    authType: { type: String, enum: ['uw', 'email'], default: 'email' }, // 'uw' for UW NetID, 'email' for email/password
+    created_date: { type: Date, default: Date.now }
 });
 models.User = mongoose.model('User', userSchema);
 console.log("User Schema Created");

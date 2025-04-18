@@ -7,6 +7,7 @@ import usersCards from './controllers/usersCards.js';
 import myBudgetController from './controllers/myBudgetController.js';
 import myBudgetCalcsRouter from './controllers/myBudgetCalcs.js';
 import commentsRouter from './controllers/comments.js';
+import authRouter from './controllers/auth.js';
 
 
 router.use('/users', usersRouter);
@@ -15,5 +16,6 @@ router.use('/usersCards', usersCards)
 router.use('/myBudget', myBudgetController)
 router.use('/myBudgetCalcs', myBudgetCalcsRouter)
 router.use('/comments', commentsRouter)
+router.use('/auth', authRouter)
 
 export default router;
